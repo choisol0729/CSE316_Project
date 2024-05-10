@@ -17,10 +17,10 @@ export default function Login(){
 		    <Header/>
 
             {/* Login seciton */}
-            <section class="container">
+            <section className="container">
                 <form id="my-form">
                     <h1>Login</h1>
-                    <div class="msg"></div>
+                    <div className="msg"></div>
                     <div>
                     <label for="name">Student ID:</label>
                     <input type="text" id="name"></input>
@@ -29,7 +29,7 @@ export default function Login(){
                     <label for="email">Password:</label>
                     <input type="text" id="email"></input>
                     </div>
-                    <input class="btn" type="submit" value="Submit"></input>
+                    <input className="btn" type="submit" value="Submit"></input>
                 </form>
 
                 <ul id="users"></ul>
