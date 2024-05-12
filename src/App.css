@@ -1,13 +1,9 @@
-/* Global CSS Variables: https://www.w3schools.com/css/css3_variables.asp */
-/* Reference these in your CSS to get the same color as the mockups */
-
-
 :root {
   --actionBackgroundColor: #f76b8a;
   --actionTextColor: white;
   --activeColor: #66bfbf;
   --standardBackgroundColor: #fcfefe;
-  --alternativeBackgroundColor: #212121;
+  --alternativeBackgroundColor: #158383;
   --standardTextColor: black;
   --lightColor: lightgray;
   --moderateColor: darkgray;
@@ -23,13 +19,15 @@ body {
   background-color: var(--alternativeBackgroundColor);
   width: 100%;
   height: 100%;
-  margin: 0px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
-button:focus  {
+button:focus {
   outline-color: var(--activeColor);
 }
 
@@ -47,91 +45,80 @@ button:hover {
   transform: scale(1.1);
 }
 
-
-
-
-
-#header{
+#header {
   font-weight: bold;
   background-color: white;
-  font-size: 100%;
   color: black;
-  margin: -6px -6px -6px -6px;
-  border-radius: 10px;
-  /* justify-content: space-between */
-}
-.wrapper{
   width: 100%;
-  min-height: 100px;
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure header stays on top */
+  padding: 10px 0;
+  margin: 0; /* Ensure no margins */
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 100%; /* Ensure the wrapper spans the full width */
+  margin: 0; /* Remove default margin */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px; /* Adjust padding for content spacing */
 }
-.lists{
+
+.lists {
   list-style: none;
   display: flex;
-  width: 800px;
+  padding: 0;
+  margin: 0;
 }
-.li{
-  text-align: center
+
+.li {
+  margin: 0 15px;
 }
-.lists>a{
-  width: 300%;
-}
-.logo{
-  /* list-style: none; */
-  /* display: flex; */
+
+.logo {
   font-size: 200%;
-  margin-left: 5%;
-  /* display: block; */
   white-space: nowrap;
 }
-.log{
+
+.log {
   margin-right: 3%;
 }
 
-
-
-
-
-.btn-danger{
+.btn-danger {
   margin-right: 2%;
-  margin-left: 0px;
-  margin-left: 2%;
   margin-top: 10px;
   border-radius: 6px;
-  background-color: #f76b8a;
-  color: white;
-  /* border-color: #f76b8a; */
+  background-color: var(--actionBackgroundColor);
+  color: var(--actionTextColor);
   border: none;
   width: 70px;
   height: 30px;
   font-size: large;
 }
 
-
-#logPage, #editPage, #viewPage{
-  width: 33%;
+#logPage, #editPage, #viewPage {
   white-space: nowrap;
-  font-size: 2vw;
+  font-size: 1.2em;
 }
 
-
-#SignUp{
+#SignUp {
   background-color: blue;
   color: white;
   border-radius: 6px;
   border: none;
-  
 }
 
-
-/* 여기는 Login Box */
 .container {
   margin: auto;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   overflow: auto;
   padding: 3rem 2rem;
+  flex: 1;
 }
 
 #my-form {

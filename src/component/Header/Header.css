@@ -1,0 +1,49 @@
+/* Header.css */
+#header {
+    position: fixed; /* Alternatively, you can use `sticky` */
+    top: 0;
+    width: 100%;
+    background-color: #fff; /* Set background color to make the header visible */
+    z-index: 1000; /* Ensure the header remains above other content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #007bff;
+}

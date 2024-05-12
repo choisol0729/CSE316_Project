@@ -1,31 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import SignUp from '../SignUp';
+import './Header.css'; // Ensure to import the CSS file
 
-export default function Header(){
-    
-	  
+export default function Header() {
     return (
-		<>
-
-		<section id="header">
-        {/* In react, change class to className */}
+        <header id="header">
             <div className="wrapper">
                 <div className="logo"><i className="fas fa-kiss-wink-heart"></i>Decompiler</div>
-                    <ul className="lists">
-                        <li id="logPage"><Link to={"/ai"}>AI</Link></li>
-                        <li id="editPage"><Link to={"/app"}>APP</Link></li>
-                        <li id="viewPage"><Link to={"/unity"}>Unity</Link></li>
-                        <li id="viewPage"><Link to={"/hackathon"}>Hackathon</Link></li>
+                <ul className="lists">
+                    <li className="li"><Link to={"/ai"}>AI</Link></li>
+                    <li className="li"><Link to={"/app"}>APP</Link></li>
+                    <li className="li"><Link to={"/unity"}>Unity</Link></li>
+                    <li className="li"><Link to={"/hackathon"}>Hackathon</Link></li>
                 </ul>
-                <div>
-                    <SignUp/>
-
-                </div>
-                
+                <SignUp />
             </div>
-        </section>
-
-		</>
+        </header>
     );
 }
