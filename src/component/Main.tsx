@@ -14,6 +14,7 @@ export default function Main(){
 		<>
 
 		<Header/>
+		<h1>Main Page</h1>
 
 		</>
     );

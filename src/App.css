@@ -80,8 +80,18 @@ button:hover {
 }
 
 .logo {
-  font-size: 200%;
-  white-space: nowrap;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.logo a {
+  text-decoration: none; /* Remove underline */
+  color: #000; /* Black color */
+  font-weight: 800; /* Set a heavier font weight */
+}
+
+.logo a:hover {
+  color: #000; /* Keep the color black on hover */
 }
 
 .log {

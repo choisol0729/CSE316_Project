@@ -20,30 +20,29 @@
     font-weight: bold;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+/* 링크 스타일 제거 및 색상 지정 */
+.logo a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
 }
 
-nav ul {
+.lists {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-nav li {
+.li {
     margin-left: 20px;
 }
 
-nav a {
+.li a {
     text-decoration: none;
     color: #000;
     font-weight: 500;
 }
 
-nav a:hover {
+.li a:hover {
     color: #007bff;
 }
