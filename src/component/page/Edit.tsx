@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import FileUpload from '../FileUpload';
 import './Edit.css';
 
-interface PostForm {
+interface BlogPost {
+    id: number;
     title: string;
     content: string;
     category: string;
 }
 
 export default function Edit() {
-    const [form, setForm] = useState<PostForm>({
+    const [form, setForm] = useState<BlogPost>({
+        id: Date.now(),
         title: '',
         content: '',
         category: ''
     });
+    const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -27,14 +30,28 @@ export default function Edit() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', form);
-        // 여기에 글 저장 로직 구현
+
+        // 기존에 저장된 게시물 목록 가져오기
+        const storedPosts = sessionStorage.getItem('allPosts');
+        const posts = storedPosts ? JSON.parse(storedPosts) as BlogPost[] : [];
+
+        // 새 게시물 추가
+        posts.push(form);
+
+        // 갱신된 게시물 목록을 다시 sessionStorage에 저장
+        sessionStorage.setItem('allPosts', JSON.stringify(posts));
+
+        // 카테고리에 따라 페이지 이동
+        if (form.category === 'AI') {
+            navigate('/ai');
+        } else if (form.category === 'Unity') {
+            navigate('/unity');
+        }
     };
 
     return (
         <>
             <Header />
-
             <h1 style={{ color: 'white' }}>Create or Edit a Post</h1>
             <form onSubmit={handleSubmit} className="form-container">
                 <div className="form-group">
@@ -61,6 +78,10 @@ export default function Edit() {
                     />
                 </div>
 
+                <div style={{ marginTop: '20px' }}>
+                    <FileUpload />
+                </div>
+
                 <div className="form-group">
                     <label htmlFor="category" className="form-label">Category:</label>
                     <select
@@ -72,9 +93,7 @@ export default function Edit() {
                     >
                         <option value="" disabled>Select a category</option>
                         <option value="AI">AI</option>
-                        <option value="App">App</option>
                         <option value="Unity">Unity</option>
-                        <option value="Hackathon">Hackathon</option>
                     </select>
                 </div>
 
@@ -82,10 +101,6 @@ export default function Edit() {
                     Submit
                 </button>
             </form>
-
-            <div style={{ marginTop: '20px' }}>
-                <FileUpload />
-            </div>
         </>
     );
 }
