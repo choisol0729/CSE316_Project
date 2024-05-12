@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 필요한 훅을 임포트
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 
 interface BlogPost {
     id: number;
     title: string;
     content: string;
+    category: string;
 }
 
-const Ai: React.FC = () => {
+const App: React.FC = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
-    const navigate = useNavigate(); // useNavigate 훅 사용
+    const navigate = useNavigate();
 
-    const addNewPost = () => {
-        const newPost: BlogPost = {
-            id: posts.length + 1,
-            title: `Blog Post ${posts.length + 1}`,
-            content: 'This is the content of the new blog post.'
-        };
-        setPosts([...posts, newPost]);
-    };
+    useEffect(() => {
+        const allPostsString = sessionStorage.getItem('allPosts');
+        if (allPostsString) {
+            const allPosts = JSON.parse(allPostsString) as BlogPost[];
+            const appPosts = allPosts.filter(post => post.category === 'App');
+            setPosts(appPosts);
+        }
+    }, []);
 
-    // edit page로 이동
     const moveToEditPage = () => {
         navigate('/edit');
     }
@@ -33,22 +33,26 @@ const Ai: React.FC = () => {
                 <h1 style={{ color: 'white' }}>App Page</h1>
                 <button onClick={moveToEditPage}>Add New Post</button>
                 <div style={{ marginTop: '20px' }}>
-                    {posts.map(post => (
-                        <div key={post.id} style={{
-                            backgroundColor: 'white', 
-                            color: 'black', 
-                            marginBottom: '10px', 
-                            padding: '10px', 
-                            borderRadius: '5px'
-                        }}>
-                            <h2>{post.title}</h2>
-                            <p>{post.content}</p>
-                        </div>
-                    ))}
+                    {posts.length > 0 ? (
+                        posts.map(post => (
+                            <div key={post.id} style={{
+                                backgroundColor: 'white',
+                                color: 'black',
+                                marginBottom: '10px',
+                                padding: '10px',
+                                borderRadius: '5px'
+                            }}>
+                                <h2>{post.title}</h2>
+                                <p>{post.content}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p style={{ color: 'white' }}>No posts available for App category.</p>
+                    )}
                 </div>
             </div>
         </>
     );
 }
 
-export default Ai;
+export default App;

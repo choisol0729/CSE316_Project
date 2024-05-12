@@ -46,6 +46,10 @@ export default function Edit() {
             navigate('/ai');
         } else if (form.category === 'Unity') {
             navigate('/unity');
+        } else if (form.category === 'App') {
+            navigate('/app');
+        } else if (form.category === 'Hackathon') {
+            navigate('/hackathon');
         }
     };
 
@@ -93,7 +97,9 @@ export default function Edit() {
                     >
                         <option value="" disabled>Select a category</option>
                         <option value="AI">AI</option>
+                        <option value="App">App</option>
                         <option value="Unity">Unity</option>
+                        <option value="Hackathon">Hackathon</option>
                     </select>
                 </div>
 
