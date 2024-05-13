@@ -2,13 +2,14 @@
 #header {
     position: fixed; /* Alternatively, you can use `sticky` */
     top: 0;
-    width: 100%;
+    width: 100vw;
     background-color: #fff; /* Set background color to make the header visible */
     z-index: 1000; /* Ensure the header remains above other content */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
 }
 
 .wrapper {
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,6 +17,8 @@
 }
 
 .logo {
+    width: 100%;
+    display: flex;
     font-size: 1.5em;
     font-weight: bold;
 }
