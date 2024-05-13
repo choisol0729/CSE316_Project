@@ -67,6 +67,7 @@ const Edit = () => {
                         value={form.title}
                         onChange={handleInputChange}
                         className="form-input"
+                        required
                     />
                 </div>
 
@@ -79,6 +80,7 @@ const Edit = () => {
                         onChange={handleInputChange}
                         rows={5}
                         className="form-textarea"
+                        required
                     />
                 </div>
 
@@ -94,6 +96,7 @@ const Edit = () => {
                         value={form.category}
                         onChange={handleInputChange}
                         className="form-select"
+                        required
                     >
                         <option value="" disabled>Select a category</option>
                         <option value="AI">AI</option>
