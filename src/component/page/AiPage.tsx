@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 
@@ -9,7 +9,7 @@ interface BlogPost {
     category: string;
 }
 
-const Ai: React.FC = () => {
+const Ai = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
 

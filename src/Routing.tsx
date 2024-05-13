@@ -1,15 +1,14 @@
 // App.tsx
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Ai from './component/page/Ai'
-import AppPage from './component/page/App'
-import Hackathon from './component/page/Hackathon'
-import Unity from './component/page/Unity'
+import Ai from './component/page/AiPage'
+import AppPage from './component/page/AppPage'
+import Hackathon from './component/page/HackathonPage'
+import Unity from './component/page/UnityPage'
 import Login from './component/Login';
 import Main from './component/Main';
-import Edit from './component/page/Edit';
+import Edit from './component/page/EditPage';
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <Router>
             <Routes>

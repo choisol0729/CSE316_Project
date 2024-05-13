@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 
@@ -9,7 +9,7 @@ interface BlogPost {
     category: string;
 }
 
-const Hackathon: React.FC = () => {
+const AppPage  = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
 
@@ -17,8 +17,8 @@ const Hackathon: React.FC = () => {
         const allPostsString = sessionStorage.getItem('allPosts');
         if (allPostsString) {
             const allPosts = JSON.parse(allPostsString) as BlogPost[];
-            const hackathonPosts = allPosts.filter(post => post.category === 'Hackathon');
-            setPosts(hackathonPosts);
+            const appPosts = allPosts.filter(post => post.category === 'App');
+            setPosts(appPosts);
         }
     }, []);
 
@@ -30,7 +30,7 @@ const Hackathon: React.FC = () => {
         <>
             <Header />
             <div style={{ padding: '20px' }}>
-                <h1 style={{ color: 'white' }}>Hackathon Page</h1>
+                <h1 style={{ color: 'white' }}>App Page</h1>
                 <button onClick={moveToEditPage}>Add New Post</button>
                 <div style={{ marginTop: '20px' }}>
                     {posts.length > 0 ? (
@@ -47,7 +47,7 @@ const Hackathon: React.FC = () => {
                             </div>
                         ))
                     ) : (
-                        <p style={{ color: 'white' }}>No posts available for Hackathon category.</p>
+                        <p style={{ color: 'white' }}>No posts available for App category.</p>
                     )}
                 </div>
             </div>
@@ -55,4 +55,4 @@ const Hackathon: React.FC = () => {
     );
 }
 
-export default Hackathon;
+export default AppPage;

@@ -11,7 +11,7 @@ interface BlogPost {
     category: string;
 }
 
-export default function Edit() {
+const Edit = () => {
     const [form, setForm] = useState<BlogPost>({
         id: Date.now(),
         title: '',
@@ -31,7 +31,7 @@ export default function Edit() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // 기존에 저장된 게시물 목록 가져오기
+        // 기존에 저장된 게시물 목록 가져오기 -> backend
         const storedPosts = sessionStorage.getItem('allPosts');
         const posts = storedPosts ? JSON.parse(storedPosts) as BlogPost[] : [];
 
@@ -110,3 +110,5 @@ export default function Edit() {
         </>
     );
 }
+
+export default Edit;

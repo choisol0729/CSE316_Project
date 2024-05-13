@@ -1,4 +1,3 @@
-import React from 'react';
 import Routing from "./Routing";
 // import View from "./component/View";  // View 컴포넌트도 만들어야 함
 import './App.css';
@@ -9,7 +8,6 @@ import './App.css';
 function App() {
   return(
     <Routing/>
-    // <Edit/>
   );
 }
 
