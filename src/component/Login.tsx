@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, {  } from 'react';
 import Header from './Header/Header';
-import SignUp from './SignUp';
+import axios from 'axios';
 
 const Login = () => {
     const [acc, setAcc] = useState(''); // State for the account
     const [pwd, setPwd] = useState(''); // State for the password
 
-    function submit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault(); 
-        console.log("submitted " + acc + " " + pwd);
-    }
+	function submit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        var acc;
+        var pwd;
+	    console.log("submitted" + acc + pwd);
 
-    // Update account state
-    const accUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAcc(e.target.value);
-    };
+        var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
+        axios.get(query).then((res) => {
+            
+                // Account with matching information
+                console.log(res);
 
-    // Update password state
-    const pwdUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPwd(e.target.value);
-    };
-
+            })
+	}
+	  
     return (
         <>
             <Header/>
