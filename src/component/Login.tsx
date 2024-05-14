@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, {  } from 'react';
 import Header from './Header/Header';
-import SignUp from './SignUp';
+import axios from 'axios';
 
 const Login = () =>{
 
@@ -14,6 +13,14 @@ const Login = () =>{
         var acc;
         var pwd;
 	    console.log("submitted" + acc + pwd);
+
+        var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
+        axios.get(query).then((res) => {
+            
+                // Account with matching information
+                console.log(res);
+
+            })
 	}
 	  
     return (
