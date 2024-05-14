@@ -9,8 +9,11 @@ const Login = () =>{
         alert('clicked');
     };
 
-	function myFunction(e) {
-	    console.log(e.target.value);
+	function submit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        var acc;
+        var pwd;
+	    console.log("submitted" + acc + pwd);
 	}
 	  
     return (
@@ -18,7 +21,7 @@ const Login = () =>{
 		    <Header/>
             {/* Login seciton */}
             <section className="container">
-                <form id="my-form">
+                <form id="my-form" onSubmit={submit}>
                     <h1>Login</h1>
                     <div className="msg"></div>
                     <div>
