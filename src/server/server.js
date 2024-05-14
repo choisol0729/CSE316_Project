@@ -40,15 +40,15 @@ app.get("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var acc = req.query["acc"];
     var pwd = req.query["pwd"];
-    const sqlQuery = "SELECT * FROM Users WHERE acc = " + acc + " AND pwd = " + pwd;
+    const sqlQuery = "SELECT * FROM Users WHERE acc = ? AND pwd = ?;";
 
-    db.query(sqlQuery, (err, result) => {
+    db.query(sqlQuery, [acc, pwd], (err, result) => {
         if(err) console.log(err);
-        console.log(result);
+        console.log(result[0]);
+
+        res.send(result[0]);
     })
 })
-
-
 
 db.connect((err) => {
     if(err) throw err;

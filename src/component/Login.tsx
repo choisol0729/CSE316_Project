@@ -8,15 +8,13 @@ const Login = () => {
 
 	function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        // var acc;
-        // var pwd;
 	    console.log("submitted" + acc + pwd);
 
-        var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
+        var query = "http://localhost:2424/login?acc=" + acc + "&pwd=" + pwd;
         axios.get(query).then((res) => {
             
                 // Account with matching information
-                console.log(res);
+                console.log("Result:", res);
 
             })
 	}
