@@ -8,8 +8,8 @@ const Login = () => {
 
 	function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        var acc;
-        var pwd;
+        // var acc;
+        // var pwd;
 	    console.log("submitted" + acc + pwd);
 
         var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
@@ -20,6 +20,16 @@ const Login = () => {
 
             })
 	}
+
+    // Update account state
+    const accUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAcc(e.target.value);
+    };
+
+    // Update password state
+    const pwdUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPwd(e.target.value);
+    };
 	  
     return (
         <>
