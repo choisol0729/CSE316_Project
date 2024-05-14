@@ -140,7 +140,7 @@ button:hover {
   display: block;
 }
 
-#my-form input[type='text'] {
+#my-form input[type='text'], [type='password'] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
