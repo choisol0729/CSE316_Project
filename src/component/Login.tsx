@@ -9,20 +9,20 @@ const Login = () => {
 
     function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const query = `http://localhost:2424/login`;
-        
-        axios.post(query, {
-            acc: acc,
-            pwd: pwd
-        }).then((res) => {
-            console.log("Login response:", res.data);
-            setMessage("로그인 성공!"); // 성공 메시지 설정
-        }).catch((error) => {
-            console.error("Login failed:", error);
-            setMessage("로그인 실패: " + error.message); // 에러 메시지 설정
-        });
-    }
+        // var acc;
+        // var pwd;
+	    console.log("submitted" + acc + pwd);
 
+        var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
+        axios.get(query).then((res) => {
+            
+                // Account with matching information
+                console.log(res);
+
+            })
+	}
+
+    // Update account state
     const accUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAcc(e.target.value);
     };

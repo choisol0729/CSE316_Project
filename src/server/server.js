@@ -48,28 +48,15 @@ app.get("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var acc = req.query["acc"];
     var pwd = req.query["pwd"];
-    console.log(`Login attempt with acc: ${acc} and pwd: ${pwd}`);
+    const sqlQuery = "SELECT * FROM Users WHERE acc = " + acc + " AND pwd = " + pwd;
 
-    // 더미 계정 확인
-    const dummyUser = dummyUsers.find(user => user.acc === acc && user.pwd === pwd);
-    if (dummyUser) {
-        res.send({ message: "로그인 성공 (더미 계정)!" });
-        return;
-    }
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
+    })
+})
 
-    // 데이터베이스 조회
-    const sqlQuery = "SELECT * FROM Users WHERE acc = ? AND pwd = ?";
-    db.query(sqlQuery, [acc, pwd], (err, result) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send({ message: "서버 오류" });
-        } else if (result.length > 0) {
-            res.send({ message: "로그인 성공!" });
-        } else {
-            res.status(401).send({ message: "로그인 실패: 계정 정보가 잘못되었습니다." });
-        }
-    });
-});
+
 
 db.connect((err) => {
     if (err) throw err;
