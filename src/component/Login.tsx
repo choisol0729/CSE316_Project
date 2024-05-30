@@ -3,54 +3,51 @@ import Header from './Header/Header';
 import axios from 'axios';
 
 const Login = () => {
-    const [acc, setAcc] = useState(''); // State for the account
-    const [pwd, setPwd] = useState(''); // State for the password
+    const [acc, setAcc] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [message, setMessage] = useState(''); // 로그인 결과 메시지를 저장할 상태
 
-	function submit(e: React.FormEvent<HTMLFormElement>) {
+    function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        // var acc;
-        // var pwd;
-	    console.log("submitted" + acc + pwd);
+        const query = `http://localhost:2424/login`;
+        
+        axios.post(query, {
+            acc: acc,
+            pwd: pwd
+        }).then((res) => {
+            console.log("Login response:", res.data);
+            setMessage("로그인 성공!"); // 성공 메시지 설정
+        }).catch((error) => {
+            console.error("Login failed:", error);
+            setMessage("로그인 실패: " + error.message); // 에러 메시지 설정
+        });
+    }
 
-        var query = "http://localhost:2424/login?acc=" + acc + "?pwd=" + pwd;
-        axios.get(query).then((res) => {
-            
-                // Account with matching information
-                console.log(res);
-
-            })
-	}
-
-    // Update account state
     const accUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAcc(e.target.value);
     };
 
-    // Update password state
     const pwdUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPwd(e.target.value);
     };
-	  
+
     return (
         <>
             <Header/>
-            {/* Login section */}
             <section className="container">
                 <form id="my-form" onSubmit={submit}>
                     <h1>Login</h1>
-                    <div className="msg"></div>
-                    <div>
+                    <div className="msg">{message}</div>
+                    <div className="form-input">
                         <label htmlFor="name">Student ID:</label>
-                        <input type="text" id="name" value={acc} onChange={accUpdate}></input>
+                        <input type="text" id="name" value={acc} onChange={accUpdate} />
                     </div>
-                    <div>
+                    <div className="form-input">
                         <label htmlFor="pwd">Password:</label>
-                        <input type="password" id="pwd" value={pwd} onChange={pwdUpdate}></input>
+                        <input type="password" id="pwd" value={pwd} onChange={pwdUpdate} />
                     </div>
-                    <input className="btn" type="submit" value="Submit"></input>
+                    <input className="btn" type="submit" value="Submit" />
                 </form>
-
-                <ul id="users"></ul>
             </section>
         </>
     );
