@@ -13,12 +13,6 @@ const db = mysql.createConnection({
     database: "Decompiler_DB",
 });
 
-// 더미 계정 데이터
-const dummyUsers = [
-    { acc: "sol", pwd: "choi" },
-    { acc: "hae", pwd: "zou" }
-];
-
 // @@@@@@@@@@@@@@@@@@@@@@@@ POST METHOD @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 app.post("/signUp", (req, res) => {
@@ -48,15 +42,17 @@ app.get("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var acc = req.query["acc"];
     var pwd = req.query["pwd"];
-    const sqlQuery = "SELECT * FROM Users WHERE acc = " + acc + " AND pwd = " + pwd;
+
+    console.log(acc, pwd);
+
+    const sqlQuery = "SELECT * FROM Users WHERE acc = '" + acc + "' AND pwd = '" + pwd + "';";
 
     db.query(sqlQuery, (err, result) => {
         if(err) console.log(err);
         console.log(result);
+        res.send(result);
     })
 })
-
-
 
 db.connect((err) => {
     if (err) throw err;
