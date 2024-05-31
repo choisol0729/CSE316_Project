@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import FileUpload from '../FileUpload';
 import './Edit.css';
+import axios from 'axios';
 
 interface BlogPost {
     id: number;
@@ -28,28 +29,30 @@ const Edit = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // 기존에 저장된 게시물 목록 가져오기 -> backend
-        const storedPosts = sessionStorage.getItem('allPosts');
-        const posts = storedPosts ? JSON.parse(storedPosts) as BlogPost[] : [];
+        try {
+            // 백엔드로 POST 요청 보내기
+            const response = await axios.post('/api/posts', form);
 
-        // 새 게시물 추가
-        posts.push(form);
+            if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
+                console.log('Post created successfully');
 
-        // 갱신된 게시물 목록을 다시 sessionStorage에 저장
-        sessionStorage.setItem('allPosts', JSON.stringify(posts));
-
-        // 카테고리에 따라 페이지 이동
-        if (form.category === 'AI') {
-            navigate('/ai');
-        } else if (form.category === 'Unity') {
-            navigate('/unity');
-        } else if (form.category === 'App') {
-            navigate('/app');
-        } else if (form.category === 'Hackathon') {
-            navigate('/hackathon');
+                // 카테고리에 따라 페이지 이동
+                if (form.category === 'AI') {
+                    navigate('/ai');
+                } else if (form.category === 'Unity') {
+                    navigate('/unity');
+                } else if (form.category === 'App') {
+                    navigate('/app');
+                } else if (form.category === 'Hackathon') {
+                    navigate('/hackathon');
+                }
+            }
+        } catch (error) {
+            console.error('Error submitting form', error);
+            // 에러 처리 로직 추가 가능
         }
     };
 
