@@ -5,20 +5,20 @@ import './Edit.css';
 import axios from 'axios';
 
 interface BlogPost {
-    id: number;
+    date: number;
     title: string;
     content: string;
     category: string;
-    userId: number; // 유저 ID
+    userId: string; // 유저 ID
 }
 
 const Edit = () => {
     const [form, setForm] = useState<BlogPost>({
-        id: Date.now(),
+        date: Date.now(),
         title: '',
         content: '',
         category: '',
-        userId: 1 // 예시로 사용자 ID를 1로 설정
+        userId: '1'
     });
     const navigate = useNavigate();
     
