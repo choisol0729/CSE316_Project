@@ -4,9 +4,10 @@ USE Decompiler_DB
 
 CREATE TABLE Contents (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    text VARCHAR(255) NOT NULL,
-    creator VARCHAR(255) NOT NULL,
-    creationDate DATE NOT NULL
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    userID VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Users (
