@@ -36,6 +36,13 @@ app.post("/postContents/:acc", (req, res) => {
     res.send({ message: `Contents for ${acc}` });
 });
 
+app.post("/post", (req, res) => {
+    var formData = req.query["formdata"];
+    console.log(formData);
+
+    res.send({ message: `Contents: ${formData}`});
+})
+
 // @@@@@@@@@@@@@@@@@@@@@@@@@ GET METHOD @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 app.get("/login", (req, res) => {
