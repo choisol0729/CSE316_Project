@@ -9,6 +9,7 @@ interface BlogPost {
     title: string;
     content: string;
     category: string;
+    userId: number; // 유저 ID
 }
 
 const Edit = () => {
@@ -16,7 +17,8 @@ const Edit = () => {
         id: Date.now(),
         title: '',
         content: '',
-        category: ''
+        category: '',
+        userId: 1 // 예시로 사용자 ID를 1로 설정
     });
     const navigate = useNavigate();
     
@@ -75,10 +77,10 @@ const Edit = () => {
 
         try {
             // 백엔드로 POST 요청 보내기
-            const response = await axios.post('/api/posts', form);
+            const response = await axios.post('http://localhost:2424/api/posts', form);
 
             if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
-                console.log('Post created successfully');
+                console.log('Post created successfully', response);
 
                 // 카테고리에 따라 페이지 이동
                 if (form.category === 'AI') {
@@ -90,6 +92,8 @@ const Edit = () => {
                 } else if (form.category === 'Hackathon') {
                     navigate('/hackathon');
                 }
+            } else {
+                console.error('Unexpected status code:', response.status);
             }
         } catch (error) {
             console.error('Error submitting form', error);
