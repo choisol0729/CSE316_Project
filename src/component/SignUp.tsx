@@ -13,7 +13,7 @@ export default function SignUp(){
         // const isEmpty = questions.some(question => question.value.trim() === '');
     
         
-        navigate('/Login');
+        navigate('/loginPage');
         
     };
 	  
