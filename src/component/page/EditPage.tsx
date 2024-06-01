@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
-import FileUpload from '../FileUpload';
 import './Edit.css';
 import axios from 'axios';
 
@@ -20,6 +19,9 @@ const Edit = () => {
         category: ''
     });
     const navigate = useNavigate();
+    
+    const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -27,6 +29,45 @@ const Edit = () => {
             ...form,
             [name]: value
         });
+    };
+
+    // Function to upload image to Cloudinary
+    const uploadImageToCloudinary = async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'your_preset'); // Cloudinary upload preset
+        formData.append('cloud_name', 'your_cloud_name'); // Cloudinary account name
+
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${formData.get('cloud_name')}/image/upload`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            console.log('Image uploaded to Cloudinary:', data.url); // Debug log
+            setProfileImage(data.url); // Set the image URL received from Cloudinary
+        } else {
+            console.error('Failed to upload image:', data);
+        }
+    };
+
+    // Handle image file change
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+            uploadImageToCloudinary(file); // Upload to Cloudinary
+        }
+    };
+
+    // Trigger file input click
+    const triggerFileInput = () => {
+        fileInputRef.current?.click();
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -87,10 +128,6 @@ const Edit = () => {
                     />
                 </div>
 
-                <div style={{ marginTop: '20px' }}>
-                    <FileUpload />
-                </div>
-
                 <div className="form-group">
                     <label htmlFor="category" className="form-label">Category:</label>
                     <select
@@ -107,6 +144,14 @@ const Edit = () => {
                         <option value="Unity">Unity</option>
                         <option value="Hackathon">Hackathon</option>
                     </select>
+                </div>
+
+                <div className="form-group image-upload-container">
+                    <div>
+                        <img src={profileImage as string || 'default_image_path.jpg'} alt="Profile" className="profile-image" />
+                        <input type="file" onChange={handleImageChange} ref={fileInputRef} style={{ display: 'none' }} />
+                        <button type="button" onClick={triggerFileInput} className="btn btn-light">Choose new image</button>
+                    </div>
                 </div>
 
                 <button type="submit" className="submit-button">

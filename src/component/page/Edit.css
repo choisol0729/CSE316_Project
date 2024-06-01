@@ -37,3 +37,25 @@
 .submit-button:hover {
     background-color: #0056b3;
 }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.image-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn {
+    margin-right: 10px;
+}
