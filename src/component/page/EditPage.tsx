@@ -5,7 +5,6 @@ import './Edit.css';
 import axios from 'axios';
 
 interface BlogPost {
-    
     title: string;
     content: string;
     category: string;
@@ -14,7 +13,6 @@ interface BlogPost {
 
 const Edit = () => {
     const [form, setForm] = useState<BlogPost>({
-        
         title: '',
         content: '',
         category: '',

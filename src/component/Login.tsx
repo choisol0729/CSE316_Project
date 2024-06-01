@@ -7,20 +7,36 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [message, setMessage] = useState(''); // 로그인 결과 메시지를 저장할 상태
 
-    function submit(e: React.FormEvent<HTMLFormElement>) {
+    const submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // var acc;
-        // var pwd;
-	    console.log("submitted" + acc + pwd);
+        console.log("submitted", acc, pwd);
 
-        var query = "http://localhost:2424/login?acc=" + acc + "&pwd=" + pwd;
-        axios.get(query).then((res) => {
-            
-                // Account with matching information
-                console.log(res.data);
+        try {
+            const response = await axios.post('http://localhost:2424/login', { acc, pwd });
+
+            if (response.data.success) {
+                console.log('Login successful', response);
+                sessionStorage.setItem('userId', response.data.userId); // userId 저장
+                setMessage('Login successful!');
                 
-            })
-	}
+                // sessionStorage에 저장된 값 확인
+                const storedUserId = sessionStorage.getItem('userId');
+                if (storedUserId) {
+                    console.log('Stored userId:', storedUserId);
+                } else {
+                    console.error('Failed to store userId in sessionStorage');
+                }
+
+                // 추가 로직 (예: 페이지 이동) 가능
+            } else {
+                console.error('Login failed:', response.data.message);
+                setMessage('Login failed: ' + response.data.message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setMessage('An error occurred during login. Please try again.');
+        }
+    };
 
     // Update account state
     const accUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +49,7 @@ const Login = () => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <section className="container">
                 <form id="my-form" onSubmit={submit}>
                     <h1>Login</h1>
