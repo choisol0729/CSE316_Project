@@ -77,7 +77,7 @@ const Edit = () => {
 
         try {
             // 백엔드로 POST 요청 보내기
-            const response = await axios.post('http://localhost:2424/post', form);
+            const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
 
             if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
                 console.log('Post created successfully', response);
