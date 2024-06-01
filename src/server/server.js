@@ -31,16 +31,20 @@ app.post("/signUp", (req, res) => {
 });
 
 app.post("/postContents/:acc", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
     const acc = req.params.acc;
     // 더미 콘텐츠 반환 (예시)
     res.send({ message: `Contents for ${acc}` });
 });
 
 app.post("/post", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
     var formData = req.query["formdata"];
     console.log(formData);
 
-    res.send({ message: `Contents: ${formData}`});
+    res.send(formData);
 })
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@ GET METHOD @@@@@@@@@@@@@@@@@@@@@@@@@@@@
