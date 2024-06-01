@@ -51,6 +51,7 @@ app.post("/post", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    
     var acc = req.query["acc"];
     var pwd = req.query["pwd"];
 
