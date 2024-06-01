@@ -5,7 +5,7 @@ import './Edit.css';
 import axios from 'axios';
 
 interface BlogPost {
-    date: number;
+    
     title: string;
     content: string;
     category: string;
@@ -14,7 +14,7 @@ interface BlogPost {
 
 const Edit = () => {
     const [form, setForm] = useState<BlogPost>({
-        date: Date.now(),
+        
         title: '',
         content: '',
         category: '',
