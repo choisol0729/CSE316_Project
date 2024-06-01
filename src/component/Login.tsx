@@ -12,7 +12,7 @@ const Login = () => {
         console.log("submitted", acc, pwd);
 
         try {
-            const response = await axios.post('http://localhost:2424/login', { acc, pwd });
+            const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
             if (response.data.success) {
                 console.log('Login successful', response);
