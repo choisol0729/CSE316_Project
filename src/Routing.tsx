@@ -8,6 +8,7 @@ import Login from './component/Login';
 import Main from './component/Main';
 import Edit from './component/page/EditPage';
 import SignUpPage from './component/page/SignUpPage';
+import Delete from './component/Delete';
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/hackathon" element={<Hackathon />} />
                 <Route path="/edit" element={<Edit />} />
                 <Route path="/signUpPage" element={<SignUpPage />} />
+                <Route path="/deletePage" element={<Delete />} />
                 
             </Routes>
         </Router>
