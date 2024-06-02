@@ -35,6 +35,22 @@ app.post("/signUp", (req, res) => {
     });
 });
 
+app.post("/deleteAcc", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var username = req.query["username"];
+
+    const sqlQuery = "DELETE * FROM Users WHERE acc = '" + username + "';";
+
+    db.query(sqlQuery, [username], (err, result) => {
+        if(err) {
+            console.log(err);
+            res.send(err);
+        }
+        res.send(result);
+    })
+})
+
 app.post("/postContents/:acc", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
