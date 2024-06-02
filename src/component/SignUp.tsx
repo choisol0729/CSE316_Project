@@ -19,11 +19,11 @@ export default function SignUp() {
     const save = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isLoggedIn) {
-            // 로그아웃 로직
+            // log out case
             sessionStorage.removeItem('userId');
             setIsLoggedIn(false);
         } else {
-            // 회원가입 로직
+            // log in case
             navigate('/loginPage');
         }
     };
