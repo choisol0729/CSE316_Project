@@ -24,8 +24,13 @@ app.post("/signUp", (req, res) => {
     var pwd = req.query["pwd"];
     var cDate = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 
+    console.log("Name: ", username, " Pwd: ", pwd);
+
     db.query(sqlQuery, [username, pwd, "", cDate], (err, result) => {
-        if(err) console.log(err);
+        if(err) {
+            console.log(err);
+            res.send(err);
+        }
         res.send(result);
     });
 });
