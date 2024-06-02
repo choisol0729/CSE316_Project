@@ -1,21 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Header from '../Header/Header';
 
-export default function Main(){
-    const click = () => {
-        alert('clicked');
-      };
-	function myFunction(e: React.ChangeEvent<HTMLInputElement>) {
-	console.log(e.target.value); // 현재 입력 필드의 값을 콘솔에 출력
-	}
-	  
+export default function SignUpPage() {
+    const [id, setId] = useState('');
+    const [pwd, setPwd] = useState('');
+    const navigate = useNavigate();
+
+    function myFunction(e: React.ChangeEvent<HTMLInputElement>) {
+        console.log(e.target.value);
+    }
+
+    const idUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setId(e.target.value);
+        myFunction(e);
+    };
+
+    const pwdUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPwd(e.target.value);
+        myFunction(e);
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('ID:', id);
+        console.log('Password:', pwd);
+        
+        alert('Successfully created account');
+        navigate('/loginPage');
+    };
+
     return (
-		<>
-
-		<Header/>
-		    <h1>Give me your personal Info slave</h1>
-
-		</>
+        <>
+            <Header />
+            <h1>Give me your personal Info slave</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-input">
+                    <label htmlFor="id">Create ID:</label>
+                    <input type="text" required value={id} onChange={idUpdate} />
+                </div>
+                <div className="form-input">
+                    <label htmlFor="pwd">Create Password:</label>
+                    <input type="password" required value={pwd} onChange={pwdUpdate} />
+                </div>
+                <input className="btn" type="submit" value="Create Account" />
+            </form>
+        </>
     );
 }
