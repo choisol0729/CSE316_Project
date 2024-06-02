@@ -42,7 +42,7 @@ export default function SignUpPage() {
 
         try {
             // 백엔드로 POST 요청 보내기
-            const response = await axios.post('http://localhost:2424/post?formdata22=' + JSON.stringify(form));
+            const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
 
             
         } catch (error) {
