@@ -8,6 +8,7 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [message, setMessage] = useState(''); // 로그인 결과 메시지를 저장할 상태
     const navigate = useNavigate();
+
     const submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("submitted", acc, pwd);
@@ -15,9 +16,7 @@ const Login = () => {
         // try {
         const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
-        if(response.data.length != 0){
-
-        
+        if (response.data.length !== 0) {
             console.log('Login successful', response);
             console.log('Login successful', response.data);
 
@@ -30,15 +29,12 @@ const Login = () => {
                 console.log('Stored userId:', storedUserId);
             } else {
                 console.error('Failed to store userId in sessionStorage');
-            }                
-        // } catch (error) {
-        //     console.error('Error during login:', error);
-        //     setMessage('An error occurred during login. Please try again.');
-        // }
+            }
+
             navigate('/');
-        } else{
-            console.log('login failed invalid id or pwd')
-            alert('invalid id or pwd')
+        } else {
+            console.log('login failed invalid id or pwd');
+            alert('invalid id or pwd');
         }
     };
 
@@ -49,6 +45,11 @@ const Login = () => {
 
     const pwdUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPwd(e.target.value);
+    };
+
+    // Navigate to signUpPage
+    const navigateToSignUp = () => {
+        navigate('/signUpPage');
     };
 
     return (
@@ -68,6 +69,8 @@ const Login = () => {
                     </div>
                     <input className="btn" type="submit" value="Submit" />
                 </form>
+
+                <button className="btn" onClick={navigateToSignUp}>Don't have account?</button>
             </section>
         </>
     );

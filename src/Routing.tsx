@@ -7,6 +7,7 @@ import Unity from './component/page/UnityPage'
 import Login from './component/Login';
 import Main from './component/Main';
 import Edit from './component/page/EditPage';
+import SignUpPage from './component/page/SignUpPage';
 
 const App = () => {
     return (
@@ -19,6 +20,8 @@ const App = () => {
                 <Route path="/unity" element={<Unity />} />
                 <Route path="/hackathon" element={<Hackathon />} />
                 <Route path="/edit" element={<Edit />} />
+                <Route path="/signUpPage" element={<SignUpPage />} />
+                
             </Routes>
         </Router>
     );

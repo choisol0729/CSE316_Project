@@ -6,7 +6,7 @@ export default function Main(){
     const click = () => {
         alert('clicked');
       };
-	function myFunction(e) {
+	function myFunction(e: React.ChangeEvent<HTMLInputElement>) {
 	console.log(e.target.value); // 현재 입력 필드의 값을 콘솔에 출력
 	}
 	  
