@@ -14,7 +14,7 @@ const Login = () => {
         try {
             const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
-            if (response.data.success) {
+            
                 console.log('Login successful', response);
                 sessionStorage.setItem('userId', response.data.userId); // userId 저장
                 setMessage('Login successful!');
@@ -28,10 +28,7 @@ const Login = () => {
                 }
 
                 // 추가 로직 (예: 페이지 이동) 가능
-            } else {
-                console.error('Login failed:', response.data.message);
-                setMessage('Login failed: ' + response.data.message);
-            }
+             
         } catch (error) {
             console.error('Error during login:', error);
             setMessage('An error occurred during login. Please try again.');
