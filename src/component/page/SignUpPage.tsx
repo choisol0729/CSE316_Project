@@ -42,16 +42,22 @@ export default function SignUpPage() {
 
         try {
             // 백엔드로 POST 요청 보내기
+
+            
             const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
             console.log(response.data);
+            if(response.data.errno){
+                alert("Cant use this Id")
+            }else{
+                alert('Successfully created account');
+                navigate('/loginPage');
+            }
             
         } catch (error) {
             console.error('Error submitting form', error);
             // 에러 처리 로직 추가 가능
         }
         
-        alert('Successfully created account');
-        navigate('/loginPage');
     };
 
     
