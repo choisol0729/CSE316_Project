@@ -26,6 +26,7 @@ export default function SignUp() {
 
     const DeleteBtn = () => {
         console.log('Additional button clicked');
+        navigate('/deletePage');
     };
 
     let buttonValue;
