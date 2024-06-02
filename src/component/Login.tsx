@@ -17,6 +17,7 @@ const Login = () => {
 
         
             console.log('Login successful', response);
+            console.log('Login successful', response.data);
             sessionStorage.setItem('userId', acc); // userId 저장
             setMessage('Login successful!');
             
