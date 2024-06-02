@@ -60,11 +60,11 @@ const Login = () => {
                     <div className="msg">{message}</div>
                     <div className="form-input">
                         <label htmlFor="name">Student ID:</label>
-                        <input type="text" id="name" value={acc} onChange={accUpdate} />
+                        <input type="text" required id="name" value={acc} onChange={accUpdate} />
                     </div>
                     <div className="form-input">
                         <label htmlFor="pwd">Password:</label>
-                        <input type="password" id="pwd" value={pwd} onChange={pwdUpdate} />
+                        <input type="password" required id="pwd" value={pwd} onChange={pwdUpdate} />
                     </div>
                     <input className="btn" type="submit" value="Submit" />
                 </form>
