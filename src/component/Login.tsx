@@ -38,6 +38,7 @@ const Login = () => {
             navigate('/');
         } else{
             console.log('login failed invalid id or pwd')
+            alert('invalid id or pwd')
         }
     };
 
