@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function Delete(){
     
-    const [acc, setAcc] = useState('');
+    const acc = sessionStorage.getItem('userId')
     const navigate = useNavigate();
 
 	
