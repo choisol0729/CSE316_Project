@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
 import Header from './Header/Header';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [acc, setAcc] = useState('');
     const [pwd, setPwd] = useState('');
     const [message, setMessage] = useState(''); // 로그인 결과 메시지를 저장할 상태
-
+    const navigate = useNavigate();
     const submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("submitted", acc, pwd);
 
         // try {
-            const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
+        const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
+        
+            console.log('Login successful', response);
+            sessionStorage.setItem('userId', acc); // userId 저장
+            setMessage('Login successful!');
             
-                console.log('Login successful', response);
-                sessionStorage.setItem('userId', acc); // userId 저장
-                setMessage('Login successful!');
-                
-                // sessionStorage에 저장된 값 확인
-                const storedUserId = sessionStorage.getItem('userId');
-                if (storedUserId) {
-                    console.log('Stored userId:', storedUserId);
-                } else {
-                    console.error('Failed to store userId in sessionStorage');
-                }
+            // sessionStorage에 저장된 값 확인
+            const storedUserId = sessionStorage.getItem('userId');
+            if (storedUserId) {
+                console.log('Stored userId:', storedUserId);
+            } else {
+                console.error('Failed to store userId in sessionStorage');
+            }
 
                 // 추가 로직 (예: 페이지 이동) 가능
              
@@ -33,6 +34,7 @@ const Login = () => {
         //     console.error('Error during login:', error);
         //     setMessage('An error occurred during login. Please try again.');
         // }
+        navigate('/');
     };
 
     // Update account state
