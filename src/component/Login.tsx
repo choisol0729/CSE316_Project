@@ -11,12 +11,12 @@ const Login = () => {
         e.preventDefault();
         console.log("submitted", acc, pwd);
 
-        try {
+        // try {
             const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
             
                 console.log('Login successful', response);
-                sessionStorage.setItem('userId', response.data.userId); // userId 저장
+                sessionStorage.setItem('userId', acc); // userId 저장
                 setMessage('Login successful!');
                 
                 // sessionStorage에 저장된 값 확인
@@ -29,10 +29,10 @@ const Login = () => {
 
                 // 추가 로직 (예: 페이지 이동) 가능
              
-        } catch (error) {
-            console.error('Error during login:', error);
-            setMessage('An error occurred during login. Please try again.');
-        }
+        // } catch (error) {
+        //     console.error('Error during login:', error);
+        //     setMessage('An error occurred during login. Please try again.');
+        // }
     };
 
     // Update account state
