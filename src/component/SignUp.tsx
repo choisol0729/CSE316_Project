@@ -32,7 +32,7 @@ export default function SignUp() {
     if (isLoggedIn) {
         buttonValue = "Log out";
     } else {
-        buttonValue = "Sign In";
+        buttonValue = "Log in";
     }
 
     return (
