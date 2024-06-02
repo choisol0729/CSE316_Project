@@ -39,6 +39,7 @@ app.post("/deleteAcc", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     var username = req.query["username"];
+    console.log("Username: ", username);
 
     const sqlQuery = "DELETE * FROM Users WHERE acc = '" + username + "';";
 
