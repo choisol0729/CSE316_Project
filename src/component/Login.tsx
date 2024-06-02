@@ -15,9 +15,12 @@ const Login = () => {
         // try {
         const response = await axios.get('http://localhost:2424/login?acc=' + acc + "&pwd=" + pwd);
 
+        if(response.data.length != 0){
+
         
             console.log('Login successful', response);
             console.log('Login successful', response.data);
+
             sessionStorage.setItem('userId', acc); // userId 저장
             setMessage('Login successful!');
             
@@ -27,15 +30,15 @@ const Login = () => {
                 console.log('Stored userId:', storedUserId);
             } else {
                 console.error('Failed to store userId in sessionStorage');
-            }
-
-                // 추가 로직 (예: 페이지 이동) 가능
-             
+            }                
         // } catch (error) {
         //     console.error('Error during login:', error);
         //     setMessage('An error occurred during login. Please try again.');
         // }
-        navigate('/');
+            navigate('/');
+        } else{
+            console.log('login failed invalid id or pwd')
+        }
     };
 
     // Update account state
