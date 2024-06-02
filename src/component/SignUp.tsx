@@ -12,10 +12,6 @@ export default function SignUp() {
         }
     }, []);
 
-    function myFunction(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log(e.target.value);
-    }
-
     const save = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isLoggedIn) {
@@ -26,6 +22,10 @@ export default function SignUp() {
             // log in case
             navigate('/loginPage');
         }
+    };
+
+    const DeleteBtn = () => {
+        console.log('Additional button clicked');
     };
 
     let buttonValue;
@@ -39,6 +39,13 @@ export default function SignUp() {
         <>
             <form id="formEdit" onSubmit={save}>
                 <input type="submit" value={buttonValue} id="SignUp"></input>
+                {isLoggedIn && (
+                    <button type="button" onClick={DeleteBtn}>
+                        Delete Account
+                    </button>
+                    
+
+                )}
             </form>
         </>
     );
