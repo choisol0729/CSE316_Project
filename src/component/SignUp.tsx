@@ -13,11 +13,11 @@ export default function SignUp() {
     }, []);
 
     function myFunction(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log(e.target.value); // 현재 입력 필드의 값을 콘솔에 출력
+        console.log(e.target.value);
     }
 
     const save = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // 폼 제출을 막음
+        e.preventDefault();
         if (isLoggedIn) {
             // 로그아웃 로직
             sessionStorage.removeItem('userId');
@@ -32,13 +32,12 @@ export default function SignUp() {
     if (isLoggedIn) {
         buttonValue = "Log out";
     } else {
-        buttonValue = "Sign Up";
+        buttonValue = "Sign In";
     }
 
     return (
         <>
             <form id="formEdit" onSubmit={save}>
-                <input type="text" onChange={myFunction} style={{ display: isLoggedIn ? 'none' : 'block' }} />
                 <input type="submit" value={buttonValue} id="SignUp"></input>
             </form>
         </>
