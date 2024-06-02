@@ -38,16 +38,17 @@ app.post("/signUp", (req, res) => {
 app.post("/deleteAcc", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-    var username = req.query["username"];
+    var username = req.query["acc"];
     console.log("Username: ", username);
 
-    const sqlQuery = "DELETE * FROM Users WHERE acc = '" + username + "';";
+    const sqlQuery = "DELETE FROM Users WHERE acc = ?;";
 
     db.query(sqlQuery, [username], (err, result) => {
         if(err) {
             console.log(err);
             res.send(err);
         }
+        console.log(result);
         res.send(result);
     })
 })
@@ -64,7 +65,7 @@ app.post("/post", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     var formData = req.query["formdata"];
-    console.log(formData);
+    console.log("Data:", formData);
 
     res.send(formData);
 })
