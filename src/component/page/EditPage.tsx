@@ -9,6 +9,7 @@ interface BlogPost {
     content: string;
     category: string;
     userId: string;
+    url: string;
 }
 
 const Edit = () => {
@@ -19,7 +20,8 @@ const Edit = () => {
         title: '',
         content: '',
         category: '',
-        userId: '1'
+        userId: '1',
+        url: ''
     });
     const navigate = useNavigate();
     
@@ -81,6 +83,10 @@ const Edit = () => {
 
                 console.log(url);
                 // do something with url
+                setForm({
+                    ...form,
+                    url: url
+                });
             })
             .catch(err => console.log(err));
         }
