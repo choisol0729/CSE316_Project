@@ -12,7 +12,7 @@ interface BlogPost {
 }
 
 const Edit = () => {
-    const uploadPreset = "xoxm4w6z";
+    const uploadPreset = "laiyi8dx";
     const cloudName = "dd0npgwst";
 
     const [form, setForm] = useState<BlogPost>({
@@ -57,15 +57,15 @@ const Edit = () => {
 
     // Handle image file change
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // const file = event.target.files?.[0];
-        // if (file) {
-        //     const reader = new FileReader();
-        //     reader.onloadend = () => {
-        //         setProfileImage(reader.result);
-        //     };
-        //     reader.readAsDataURL(file);
-        //     uploadImageToCloudinary(file); // Upload to Cloudinary
-        // }
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfileImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+            // uploadImageToCloudinary(file); // Upload to Cloudinary
+        }
 
         var img = event.target.files;
         if(img?.length !== 0 && img !== null) {
@@ -79,6 +79,7 @@ const Edit = () => {
             .then((res) => {
                 var url = res.data.url;
 
+                console.log(url);
                 // do something with url
             })
             .catch(err => console.log(err));
@@ -170,7 +171,6 @@ const Edit = () => {
 
                 <div className="form-group image-upload-container">
                     <div>
-                        <img src={profileImage as string || 'default_image_path.jpg'} alt="Profile" className="profile-image" />
                         <input type="file" onChange={handleImageChange} ref={fileInputRef} style={{ display: 'none' }} />
                         <button type="button" onClick={triggerFileInput} className="btn btn-light">Choose new image</button>
                     </div>
