@@ -53,12 +53,22 @@ app.post("/deleteAcc", (req, res) => {
     })
 })
 
-app.post("/postContents/:acc", (req, res) => {
+app.post("/postContents", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-    const acc = req.params.acc;
-    // 더미 콘텐츠 반환 (예시)
-    res.send({ message: `Contents for ${acc}` });
+    const userID = req.query["userID"];
+    const title = req.query["title"];
+    const content = req.query["content"];
+    const category = req.query["category"];
+    const url = req.query["url"];
+    const id = parseInt((Math.random() * MAX_CELL_VALUE).toPrecision(16));
+
+    sqlQuery = "INSERT INTO Contents(id, title, content, category, userID, url) VALUES (?, ?, ?, ?, ?, ?);"
+
+    db.query(sqlQuery, [id, title, content, category, userID, url], (err, result) => {
+        if(err) console.log(err);
+        res.send(result, id);
+    })
 });
 
 app.post("/post", (req, res) => {
