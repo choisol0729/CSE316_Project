@@ -113,6 +113,18 @@ app.get("/getContent", (req, res) => {
     })
 })
 
+app.get("/getAllContents", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const sqlQuery = "SELECT * FROM Contents;";
+
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
+        res.send(result);
+    })
+})
+
 db.connect((err) => {
     if (err) throw err;
     console.log("Connected!");
