@@ -65,7 +65,7 @@ export default function SignUpPage() {
     return (
         <>
             <Header />
-            <h1>Give me your personal Info slave</h1>
+            <h1>Give me ID and PW</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-input">
                     <label htmlFor="id">Create ID:</label>

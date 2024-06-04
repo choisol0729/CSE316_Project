@@ -12,8 +12,8 @@ interface BlogPost {
 }
 
 const Edit = () => {
-    const uploadPreset = ;
-    const cloudName = ;
+    const uploadPreset = "xoxm4w6z";
+    const cloudName = "dd0npgwst";
 
     const [form, setForm] = useState<BlogPost>({
         title: '',
