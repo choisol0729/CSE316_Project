@@ -100,6 +100,9 @@ const Edit = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
+        const response = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
+        console.log(response.data);
         // try {
         //     // 백엔드로 POST 요청 보내기
         //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
