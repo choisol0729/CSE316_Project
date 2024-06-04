@@ -99,6 +99,20 @@ app.get("/login", (req, res) => {
     })
 })
 
+app.get("/getContent", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var id = req.query["id"];
+
+    const sqlQuery = "SELECT * FROM Contents WHERE id = " + id + ";";
+
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
+        res.send(result);
+    })
+})
+
 db.connect((err) => {
     if (err) throw err;
     console.log("Connected!");
