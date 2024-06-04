@@ -125,6 +125,20 @@ app.get("/getAllContents", (req, res) => {
     })
 })
 
+app.get("/getCategoryContents", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    var category = req.query["category"];
+
+    const sqlQuery = "SELECT * FROM Contents WHERE category = '" + category + "';";
+
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
+        res.send(result);
+    })
+})
+
 db.connect((err) => {
     if (err) throw err;
     console.log("Connected!");
