@@ -12,6 +12,9 @@ interface BlogPost {
 }
 
 const Edit = () => {
+    const uploadPreset = ;
+    const cloudName = ;
+
     const [form, setForm] = useState<BlogPost>({
         title: '',
         content: '',
@@ -54,14 +57,31 @@ const Edit = () => {
 
     // Handle image file change
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-            uploadImageToCloudinary(file); // Upload to Cloudinary
+        // const file = event.target.files?.[0];
+        // if (file) {
+        //     const reader = new FileReader();
+        //     reader.onloadend = () => {
+        //         setProfileImage(reader.result);
+        //     };
+        //     reader.readAsDataURL(file);
+        //     uploadImageToCloudinary(file); // Upload to Cloudinary
+        // }
+
+        var img = event.target.files;
+        if(img?.length !== 0 && img !== null) {
+            console.log(img[0]);
+
+            const formData = new FormData();
+            formData.append('file', img[0]);
+            formData.append('upload_preset', uploadPreset);
+            
+            axios.post("https://api-ap.cloudinary.com/v1_1/" + cloudName + "/image/upload", formData)
+            .then((res) => {
+                var url = res.data.url;
+
+                // do something with url
+            })
+            .catch(err => console.log(err));
         }
     };
 

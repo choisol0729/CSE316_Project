@@ -126,7 +126,6 @@ button:hover {
   margin: auto;
   width: 100%;
   max-width: 500px;
-  overflow: auto;
   padding: 3rem 2rem;
   flex: 1;
 }
