@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Header from '../Header/Header';
 import axios from 'axios';
+import "./SignUpPage.css";
 
 interface CreateAcc {
     date: string;
@@ -69,11 +70,13 @@ export default function SignUpPage() {
             <form onSubmit={handleSubmit}>
                 <div className="form-input">
                     <label htmlFor="id">Create ID:</label>
-                    <input type="text" required value={id} onChange={idUpdate} />
+                    <br />
+                    <input id="wow" type="text" required value={id} onChange={idUpdate} />
                 </div>
                 <div className="form-input">
                     <label htmlFor="pwd">Create Password:</label>
-                    <input type="password" required value={pwd} onChange={pwdUpdate} />
+                    <br />
+                    <input id="wow" type="password" required value={pwd} onChange={pwdUpdate} />
                 </div>
                 <input className="btn" type="submit" value="Create Account" />
             </form>

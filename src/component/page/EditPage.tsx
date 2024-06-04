@@ -8,7 +8,7 @@ interface BlogPost {
     title: string;
     content: string;
     category: string;
-    userId: string; // 유저 ID
+    userId: string;
 }
 
 const Edit = () => {
@@ -93,30 +93,30 @@ const Edit = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        try {
-            // 백엔드로 POST 요청 보내기
-            const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
+        // try {
+        //     // 백엔드로 POST 요청 보내기
+        //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
 
-            if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
-                console.log('Post created successfully', response);
+        //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
+        //         console.log('Post created successfully', response);
 
-                // 카테고리에 따라 페이지 이동
-                if (form.category === 'AI') {
-                    navigate('/ai');
-                } else if (form.category === 'Unity') {
-                    navigate('/unity');
-                } else if (form.category === 'App') {
-                    navigate('/app');
-                } else if (form.category === 'Hackathon') {
-                    navigate('/hackathon');
-                }
-            } else {
-                console.error('Unexpected status code:', response.status);
-            }
-        } catch (error) {
-            console.error('Error submitting form', error);
-            // 에러 처리 로직 추가 가능
-        }
+        //         // 카테고리에 따라 페이지 이동
+        //         if (form.category === 'AI') {
+        //             navigate('/ai');
+        //         } else if (form.category === 'Unity') {
+        //             navigate('/unity');
+        //         } else if (form.category === 'App') {
+        //             navigate('/app');
+        //         } else if (form.category === 'Hackathon') {
+        //             navigate('/hackathon');
+        //         }
+        //     } else {
+        //         console.error('Unexpected status code:', response.status);
+        //     }
+        // } catch (error) {
+        //     console.error('Error submitting form', error);
+        //     // 에러 처리 로직 추가 가능
+        // }
     };
 
     return (
