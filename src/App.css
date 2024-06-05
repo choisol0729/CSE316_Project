@@ -110,6 +110,7 @@ button:hover {
   color: white;
   border-radius: 6px;
   border: none;
+  margin-left: 2px;
 }
 
 .container {
