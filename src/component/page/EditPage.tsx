@@ -8,7 +8,7 @@ interface BlogPost {
     title: string;
     content: string;
     category: string;
-    userId: string;
+    userId: string | null;
     url: string;
 }
 
@@ -20,7 +20,7 @@ const Edit = () => {
         title: '',
         content: '',
         category: '',
-        userId: '1',
+        userId: '',
         url: ''
     });
     const navigate = useNavigate();
@@ -80,12 +80,13 @@ const Edit = () => {
             axios.post("https://api-ap.cloudinary.com/v1_1/" + cloudName + "/image/upload", formData)
             .then((res) => {
                 var url = res.data.url;
-
+                const storedUserId = sessionStorage.getItem('userId'); 
                 console.log(url);
                 // do something with url
                 setForm({
                     ...form,
-                    url: url
+                    url: url,
+                    userId: storedUserId
                 });
             })
             .catch(err => console.log(err));
