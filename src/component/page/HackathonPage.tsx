@@ -36,10 +36,10 @@ const HackathonPage = () => {
     const moveToEditPage = () => {
         const storedUserId = sessionStorage.getItem('userId'); 
         console.log(storedUserId);
-        if(storedUserId!= null){
+        if(storedUserId === 'admin'){
             navigate('/edit');
         }else{
-            alert('Login First')
+            alert('Login with Admin account')
         }
         
     }
