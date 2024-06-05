@@ -136,7 +136,7 @@ const Edit = () => {
         const postResponse = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
         console.log(postResponse.data);
 
-        const getResponse = await axios.get('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
+        const getResponse = await axios.post('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
         
         
         // try {
