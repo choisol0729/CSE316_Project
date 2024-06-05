@@ -62,6 +62,11 @@ const ClickedPage = () => {
 
     const deletePost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if(sessionStorage.getItem('userId')!= null){
+            console.log('you can delete post')
+            
+        }
         
     };
     return (
