@@ -67,7 +67,7 @@ const UnityPage = () => {
             </div> */}
 
             <div className="center" style={{ padding: '20px' }}>
-                <h1 style={{ color: 'white' }}>App Page</h1>
+                <h1 style={{ color: 'white' }}>Unity Page</h1>
                 <button style={{ color: 'white'}} onClick={moveToEditPage}>Add New Post</button>
                 <div style={{ marginTop: '20px' }}>
                     {posts.length > 0 ? (
