@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEventHandler } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './page.css'
@@ -45,16 +45,17 @@ const Ai = () => {
         navigate('/edit');
     }
 
-    const toClickedPage = () => {
-        const fetchPosts = async () => {
-            const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
-            setFetchedPosts(response.data);
-            const aiPosts = response.data.filter(post => post.category === 'AI');
-            setPosts(aiPosts)
-            navigate('/clickedPage', { state: {
-                
-            }})
-        }
+    const toClickedPage = async (id: number) => {
+        const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
+        setFetchedPosts(response.data);
+
+        console.log("ID: ", id);
+
+        const aiPosts = response.data.filter(post => post.category === 'AI');
+        setPosts(aiPosts)
+        navigate('/clickedPage', { state: {
+            id: id
+        }})
     }
 
     
@@ -84,7 +85,7 @@ const Ai = () => {
                             }}>
                                 {/* check possible to click page or not */}
                                 
-                                <div onClick={toClickedPage}>
+                                <div onClick={() => toClickedPage(post.id)}>
                                     <section>
                                         <h2>{post.title}</h2>
                                         {/* <p>{post.category}</p> */}
