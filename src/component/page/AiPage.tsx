@@ -9,6 +9,7 @@ interface BlogPost {
     title: string;
     content: string;
     category: string;
+    url: string;
 }
 
 const Ai = () => {
@@ -62,10 +63,17 @@ const Ai = () => {
                                 color: 'black', 
                                 marginBottom: '10px', 
                                 padding: '10px', 
-                                borderRadius: '5px'
+                                borderRadius: '5px',
+                                display: 'flex',
+                                justifyContent: 'space-between'
                             }}>
-                                <h2>{post.title}</h2>
-                                <p>{post.category}</p>
+                                <section>
+                                    <h2>{post.title}</h2>
+                                    <p>{post.category}</p>
+                                </section>
+                                <section>
+                                    <img src={post.url} className='ssibalnom' alt=""/>
+                                </section>
                             </div>
                         ))
                     ) : (
