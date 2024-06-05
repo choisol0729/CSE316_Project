@@ -6,6 +6,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const MAX_VALUE = 10000000
+
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -61,13 +63,13 @@ app.post("/postContents", (req, res) => {
     const content = req.query["content"];
     const category = req.query["category"];
     const url = req.query["url"];
-    const id = parseInt((Math.random() * MAX_CELL_VALUE).toPrecision(16));
+    const id = parseInt((Math.random() * MAX_VALUE).toPrecision(16));
 
-    sqlQuery = "INSERT INTO Contents(id, title, content, category, userID, url) VALUES (?, ?, ?, ?, ?, ?);"
+    const sqlQuery = "INSERT INTO Contents(id, title, content, category, userID, url) VALUES (?, ?, ?, ?, ?, ?);"
 
     db.query(sqlQuery, [id, title, content, category, userID, url], (err, result) => {
         if(err) console.log(err);
-        res.send(result, id);
+        res.send({id: id, success: true});
     })
 });
 
