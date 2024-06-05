@@ -69,7 +69,7 @@ const Ai = () => {
                                 justifyContent: 'space-between',
                             }}>
                                 {/* check possible to click page or not */}
-                                <a href="../clickedPages/clickedPage">
+                                <a href="../clickedPages/ClickedPage">
                                     <div>
                                         <section>
                                             <h2>{post.title}</h2>
