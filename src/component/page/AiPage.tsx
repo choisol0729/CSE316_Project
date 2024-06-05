@@ -92,7 +92,7 @@ const Ai = () => {
                                     </section>
                                     <br />
                                     <section>
-                                        <img src={post.url} className='sinom' alt=""/>
+                                        {post.url !== "" ? (<img src={post.url} className='sinom' alt=""/>) : <></>}
                                     </section>
                                 </div>
                                 
