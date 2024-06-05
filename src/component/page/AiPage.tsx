@@ -15,7 +15,7 @@ interface BlogPost {
 const Ai = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
-    const [fetchedPosts, setFetchedPosts] = useState<{ title: string; category: string }[]>([]);
+    const [fetchedPosts, setFetchedPosts] = useState<{ title: string; category: string; content:string; id:number;}[]>([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -70,9 +70,10 @@ const Ai = () => {
                                 <section>
                                     <h2>{post.title}</h2>
                                     <p>{post.category}</p>
+                                    <p>{post.content}</p>
                                 </section>
                                 <section>
-                                    <img src={post.url} className='ssibalnom' alt=""/>
+                                    <img src={post.url} className='sinom' alt=""/>
                                 </section>
                             </div>
                         ))
