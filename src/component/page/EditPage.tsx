@@ -127,16 +127,16 @@ const Edit = () => {
         //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
         //         console.log('Post created successfully', response);
 
-        //         // 카테고리에 따라 페이지 이동
-        //         if (form.category === 'AI') {
-        //             navigate('/ai');
-        //         } else if (form.category === 'Unity') {
-        //             navigate('/unity');
-        //         } else if (form.category === 'App') {
-        //             navigate('/app');
-        //         } else if (form.category === 'Hackathon') {
-        //             navigate('/hackathon');
-        //         }
+        // 카테고리에 따라 페이지 이동
+        if (form.category === 'AI') {
+            navigate('/ai');
+        } else if (form.category === 'Unity') {
+            navigate('/unity');
+        } else if (form.category === 'App') {
+            navigate('/app');
+        } else if (form.category === 'Hackathon') {
+            navigate('/hackathon');
+        }
         //     } else {
         //         console.error('Unexpected status code:', response.status);
         //     }
@@ -197,7 +197,7 @@ const Edit = () => {
 
                 <div className="form-group image-upload-container">
                     <div>
-                        <input type="file" onChange={handleImageChange} ref={fileInputRef} style={{ display: 'none' }} />
+                        <input type="file" onChange={handleImageChange} ref={fileInputRef} accept='image/*' style={{ display: 'none' }} />
                         <button type="button" onClick={triggerFileInput} className="btn btn-light">Choose new image</button>
                     </div>
                 </div>
