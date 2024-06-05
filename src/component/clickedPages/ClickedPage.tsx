@@ -43,17 +43,22 @@ const ClickedPage = () => {
 
     const addComments = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // console.log("submitted", acc);
 
-        
-        const response = await axios.post('http://localhost:2424/postComments?comment=' + form.comment + "&postID=" + form.postId);
-        // sessionStorage.clear()
-        // alert("successfully delted account")
-        // if(response.data.id)
-        console.log(response.data)
-        // navigate('/');
-        
+        axios.post('http://localhost:2424/postComments?comment=' + form.comment + "&postID=" + post.id)
+            .then((res) => {
+                console.log(res.data);
+            })
     };
+
+    const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        e.preventDefault();
+
+        console.log(e.target.value);
+        setForm({
+            ...form,
+            comment: e.target.value
+        })
+    }
 
     const deletePost = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -82,7 +87,7 @@ const ClickedPage = () => {
                 <div>
                     previous comments
                 </div>
-                <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5}></textarea>
+                <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
             </form>
 		</>
