@@ -17,3 +17,10 @@ CREATE TABLE Users (
     postID TEXT,
     creationDate DATE NOT NULL
 );
+
+CREATE TABLE Comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comment TEXT,
+    postID TEXT NOT NULL,
+    creationDate DATE NOT NULL
+);

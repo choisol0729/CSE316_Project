@@ -73,13 +73,20 @@ app.post("/postContents", (req, res) => {
     })
 });
 
-app.post("/post", (req, res) => {
+app.post("/postComments", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
-    var formData = req.query["formdata"];
-    console.log("Data:", formData);
+    const id = parseInt((Math.random() * MAX_VALUE).toPrecision(16));
+    var comment = req.query["comment"];
+    var postID = req.query["postID"];
+    var date = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 
-    res.send(formData);
+    const sqlQuery = "INSERT INTO Comments(id, comment, postID, creationDate) VALUES (?, ?, ?, ?);";
+
+    db.query(sqlQuery, [id, comment, postID, date], (err, result) => {
+        if(err) console.log(err);
+        res.send(result);
+    })
 })
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@ GET METHOD @@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -133,6 +140,20 @@ app.get("/getCategoryContents", (req, res) => {
     var category = req.query["category"];
 
     const sqlQuery = "SELECT * FROM Contents WHERE category = '" + category + "';";
+
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        console.log(result);
+        res.send(result);
+    })
+})
+
+app.get("/getCommentByPosts", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    
+    var id = req.query["postID"];
+
+    const sqlQuery = "SELECT * FROM Comments WHERE postID = '" + id + "';";
 
     db.query(sqlQuery, (err, result) => {
         if(err) console.log(err);
