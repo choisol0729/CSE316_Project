@@ -77,8 +77,9 @@ app.post("/deletePost", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     const postID = req.query["postID"];
+    const userID = req.query["userID"];
 
-    const sqlQuery = "DELETE FROM Contents WHERE id = '" + postID + "';";
+    const sqlQuery = "DELETE FROM Contents WHERE id = '" + postID + "' AND userID = '" + userID + "';";
 
     db.query(sqlQuery, (err, result) => {
         if(err) console.log(err);
