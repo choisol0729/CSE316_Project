@@ -45,17 +45,12 @@ export default function SignUp() {
             
             <form id="formEdit" onSubmit={save}>
                 <input type="submit" value={buttonValue} id="SignUp"></input>
-                
+                {isLoggedIn && (
+
+                    <input type="submit" value="Delete" id='SignUp' />
+                )} 
             </form>
             
-
-            {isLoggedIn && (
-                <button type="button" onClick={DeleteBtn} id='SignUp'>
-                    Delete Account
-                </button>
-                    
-
-                )}
         </>
     );
 }
