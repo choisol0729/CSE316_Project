@@ -62,7 +62,7 @@ const ClickedPage = () => {
         axios.post('http://localhost:2424/postComments?comment=' + comment + "&postID=" + post.id)
             .then((res) => {
                 console.log(res.data);
-                navigate('/clickedPage')
+                <meta http-equiv="refresh" content="5"></meta>
             })
     };
 
