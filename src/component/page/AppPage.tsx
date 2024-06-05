@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEventHandler } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './page.css'
@@ -22,8 +22,8 @@ const AppPage = () => {
             try {
                 const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
                 setFetchedPosts(response.data);
-                const aiPosts = response.data.filter(post => post.category === 'App');
-                setPosts(aiPosts)
+                const appPosts = response.data.filter(post => post.category === 'App');
+                setPosts(appPosts)
             } catch (error) {
                 console.error('Error fetching posts', error);
             }
@@ -32,29 +32,29 @@ const AppPage = () => {
         fetchPosts();
     }, []);
     
-    // useEffect(() => {
-    //     const allPostsString = sessionStorage.getItem('allPosts');
-    //     if (allPostsString) {
-    //         const allPosts = JSON.parse(allPostsString) as BlogPost[];
-    //         const aiPosts = allPosts.filter(post => post.category === 'AI');
-    //         setPosts(aiPosts);
-    //     }
-    // }, []);
 
     const moveToEditPage = () => {
-        navigate('/edit');
+        const storedUserId = sessionStorage.getItem('userId'); 
+        console.log(storedUserId);
+        if(storedUserId!= null){
+            navigate('/edit');
+        }else{
+            alert('Login First')
+        }
+        
     }
 
-    const toClickedPage = () => {
-        const fetchPosts = async () => {
-            const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
-            setFetchedPosts(response.data);
-            const aiPosts = response.data.filter(post => post.category === 'App');
-            setPosts(aiPosts)
-            navigate('/clickedPage', { state: {
-                
-            }})
-        }
+    const toClickedPage = async (id: number) => {
+        const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
+        setFetchedPosts(response.data);
+
+        console.log("ID: ", id);
+
+        const appPosts = response.data.filter(post => post.category === 'AI');
+        setPosts(appPosts)
+        navigate('/clickedPage', { state: {
+            id: id
+        }})
     }
 
     
@@ -84,7 +84,7 @@ const AppPage = () => {
                             }}>
                                 {/* check possible to click page or not */}
                                 
-                                <div onClick={toClickedPage}>
+                                <div onClick={() => toClickedPage(post.id)}>
                                     <section>
                                         <h2>{post.title}</h2>
                                         {/* <p>{post.category}</p> */}
