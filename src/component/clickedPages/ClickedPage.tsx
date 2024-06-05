@@ -62,7 +62,8 @@ const ClickedPage = () => {
 
     const deletePost = () => {
         // e.preventDefault();
-        const response = axios.post('http://localhost:2424/deletPost?postID=' + form.postId + '&userID=' + userInfo.id)
+        var userIdInSS = sessionStorage.get('userId')
+        const response = axios.post('http://localhost:2424/deletPost?postID=' + post.id + '&userID=' + userIdInSS)
 
         if(sessionStorage.getItem('userId')!= null){
             console.log('you can delete post')
