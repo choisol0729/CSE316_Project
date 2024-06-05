@@ -42,25 +42,20 @@ export default function SignUp() {
                 <h4>welcome</h4>
             )} */}
 
-            {isLoggedIn && (
-
-            <form id="formEdit" onSubmit={DeleteBtn}>
-                <input type="submit" value="Delete" id='SignUp' />
-            </form>
-            )} 
+            
             <form id="formEdit" onSubmit={save}>
                 <input type="submit" value={buttonValue} id="SignUp"></input>
                 
             </form>
             
 
-            {/* {isLoggedIn && (
-                    <button type="button" onClick={DeleteBtn} id='SignUp'>
-                        Delete Account
-                    </button>
+            {isLoggedIn && (
+                <button type="button" onClick={DeleteBtn} id='SignUp'>
+                    Delete Account
+                </button>
                     
 
-                )} */}
+                )}
         </>
     );
 }
