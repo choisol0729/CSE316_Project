@@ -29,10 +29,19 @@ const Edit = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const storedUserId = sessionStorage.getItem('userId'); 
+        console.log(storedUserId);
+        
+        // setForm({
+        //     ...form,
+        //     // url: url,
+        //     userId: storedUserId
+        // });
         const { name, value } = e.target;
         setForm({
             ...form,
-            [name]: value
+            [name]: value,
+            userId: storedUserId
         });
     };
 
