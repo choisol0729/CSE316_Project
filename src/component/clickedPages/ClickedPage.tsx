@@ -55,6 +55,10 @@ const ClickedPage = () => {
         
     };
 
+    const deletePost = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+    };
     return (
 		<>
             <Header/>
@@ -66,6 +70,14 @@ const ClickedPage = () => {
                 </div>
             </div>
             <form id="my-form" onSubmit={addComments}>
+                <div>
+                    <form action="" onSubmit={deletePost}>
+                        <button type='submit' className='submit-button'>
+                            Delete Post
+                        </button>
+                    </form>
+                    
+                </div>
                 <h1>Add comments</h1>
                 <div>
                     previous comments
