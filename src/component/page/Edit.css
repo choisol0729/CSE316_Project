@@ -85,3 +85,9 @@
     cursor: pointer;
     float:right;
 }
+
+.comments{
+    width: 100%;
+    background-color: aquamarine;
+    border-radius: 5px;
+}

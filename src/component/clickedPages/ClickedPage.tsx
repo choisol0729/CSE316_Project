@@ -57,7 +57,7 @@ const ClickedPage = () => {
 
 
     const addComments = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         axios.post('http://localhost:2424/postComments?comment=' + comment + "&postID=" + post.id)
             .then((res) => {
@@ -103,7 +103,7 @@ const ClickedPage = () => {
                 <h1>Add comments</h1>
                 <div>
                     {form.comment.map((com) => (
-                        <div key={com.id}>{com.comment}</div>
+                        <div className='comments' key={com.id}>{com.comment}</div>
                     ))}
                 </div>
                 <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)}></textarea>
