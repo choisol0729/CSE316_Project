@@ -14,11 +14,7 @@ interface BlogPost {
 const Ai = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
-    const location = useLocation();
     const [fetchedPosts, setFetchedPosts] = useState<{ title: string; category: string }[]>([]);
-
-
-    const { title, category } = location.state || { title: '', category: '' };
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -68,8 +64,8 @@ const Ai = () => {
                                 padding: '10px', 
                                 borderRadius: '5px'
                             }}>
-                                <h2>{title}</h2>
-                                <p>{category}</p>
+                                <h2>{post.title}</h2>
+                                <p>{post.category}</p>
                             </div>
                         ))
                     ) : (
