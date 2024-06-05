@@ -55,17 +55,17 @@ const Ai = () => {
             <div className="center" style={{ padding: '20px' }}>
                 <h1 style={{ color: 'white' }}>AI Page</h1>
                 <button style={{ color: 'white'}} onClick={moveToEditPage}>Add New Post</button>
-                <div style={{ marginTop: '20px' }}>
+                <div className="form-container" style={{ marginTop: '20px' }}>
                     {posts.length > 0 ? (
                         posts.map(post => (
                             <div key={post.id} style={{
                                 backgroundColor: 'white', 
                                 color: 'black', 
-                                marginBottom: '10px', 
-                                padding: '10px', 
-                                borderRadius: '5px',
+                                // marginBottom: '10px', 
+                                // padding: '10px', 
+                                // borderRadius: '5px',
                                 display: 'flex',
-                                justifyContent: 'space-between'
+                                justifyContent: 'space-between',
                             }}>
                                 <section>
                                     <h2>{post.title}</h2>
