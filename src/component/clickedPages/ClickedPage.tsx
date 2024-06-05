@@ -1,6 +1,6 @@
 import Header from '../Header/Header';
-import '../App.css'
-export default function Main(){
+// import '../App.css'
+export default function ClickedPage(){
 	  
     return (
 		<>

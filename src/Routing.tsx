@@ -9,6 +9,7 @@ import Main from './component/Main';
 import Edit from './component/page/EditPage';
 import SignUpPage from './component/page/SignUpPage';
 import Delete from './component/Delete';
+import ClickedPage from './component/clickedPages/ClickedPage';
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/edit" element={<Edit />} />
                 <Route path="/signUpPage" element={<SignUpPage />} />
                 <Route path="/deletePage" element={<Delete />} />
+                <Route path="/clickedPage" element={<ClickedPage />} />
                 
             </Routes>
         </Router>

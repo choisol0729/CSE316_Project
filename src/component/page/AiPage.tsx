@@ -45,6 +45,10 @@ const Ai = () => {
         navigate('/edit');
     }
 
+    const toClickedPage = () => {
+        navigate('/clickedPage')
+    }
+
     return (
         <>
             <Header />
@@ -69,19 +73,19 @@ const Ai = () => {
                                 justifyContent: 'space-between',
                             }}>
                                 {/* check possible to click page or not */}
-                                <a href="../clickedPages/ClickedPage.tsx">
-                                    <div>
-                                        <section>
-                                            <h2>{post.title}</h2>
-                                            {/* <p>{post.category}</p> */}
-                                            <p>{post.content}</p>
-                                        </section>
-                                        <br />
-                                        <section>
-                                            <img src={post.url} className='sinom' alt=""/>
-                                        </section>
-                                    </div>
-                                </a>
+                                
+                                <div onClick={toClickedPage}>
+                                    <section>
+                                        <h2>{post.title}</h2>
+                                        {/* <p>{post.category}</p> */}
+                                        <p>{post.content}</p>
+                                    </section>
+                                    <br />
+                                    <section>
+                                        <img src={post.url} className='sinom' alt=""/>
+                                    </section>
+                                </div>
+                                
                                 
                             </div>
                         ))
