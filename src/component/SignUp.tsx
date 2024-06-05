@@ -38,16 +38,17 @@ export default function SignUp() {
 
     return (
         <>
+
+            {isLoggedIn && (
+
+            <form id="formEdit" onSubmit={DeleteBtn}>
+                <input type="submit" value="Delete" id='SignUp' />
+            </form>
+            )} 
             <form id="formEdit" onSubmit={save}>
                 <input type="submit" value={buttonValue} id="SignUp"></input>
                 
             </form>
-            {isLoggedIn && (
-
-                <form id="formEdit" onSubmit={DeleteBtn}>
-                    <input type="submit" value="Delete" id='SignUp' />
-                </form>
-            )} 
             
 
             {/* {isLoggedIn && (
