@@ -66,20 +66,20 @@ export default function SignUpPage() {
     return (
         <>
             <Header />
-            <h1>Give me ID and PW</h1>
-            <form onSubmit={handleSubmit}>
+            <section className="container">
+            <form id="my-form" onSubmit={handleSubmit}>
+                <h1>Make ID and PW</h1>
                 <div className="form-input">
                     <label htmlFor="id">Create ID:</label>
-                    <br />
-                    <input id="wow" type="text" required value={id} onChange={idUpdate} />
+                    <input id="name" type="text" required value={id} onChange={idUpdate} />
                 </div>
                 <div className="form-input">
                     <label htmlFor="pwd">Create Password:</label>
-                    <br />
-                    <input id="wow" type="password" required value={pwd} onChange={pwdUpdate} />
+                    <input id="pwd" type="password" required value={pwd} onChange={pwdUpdate} />
                 </div>
                 <input className="btn" type="submit" value="Create Account" />
             </form>
+            </section>
         </>
     );
 }

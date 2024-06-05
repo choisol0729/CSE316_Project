@@ -4,3 +4,47 @@
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+#SignUp {
+  background-color: blue;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 500px;
+  /* padding: 3rem 2rem; */
+  padding-top: 2rem;
+  flex: 1;
+}
+
+#my-form {
+  padding: 2rem;
+  background: #f4f4f4;
+}
+
+#my-form label {
+  display: block;
+}
+
+#my-form input[type='text'], [type='password'] {
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px 0;
+}
