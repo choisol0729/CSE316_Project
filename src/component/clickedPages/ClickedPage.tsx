@@ -70,7 +70,7 @@ const ClickedPage = () => {
                 <div>
                     previous comments
                 </div>
-                <textarea style={ {width: 100}} name="" id="" cols={30} rows={5}></textarea>
+                <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
             </form>
 		</>
