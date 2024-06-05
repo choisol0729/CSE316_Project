@@ -13,8 +13,8 @@ interface BlogPost {
 }
 
 interface commentPost{
-    comment: string;
-    postId: string;
+    comment: string[];
+    postId: number;
 }
 
 const ClickedPage = () => {
@@ -22,9 +22,10 @@ const ClickedPage = () => {
     const location = useLocation();
     const userInfo = { ...location.state };
     const navigate = useNavigate();
+    const [comment, setComment] = useState("");
     const [form, setForm] = useState<commentPost>({
-        comment: '',
-        postId: '',
+        comment: [],
+        postId: 0,
 
     });
 
@@ -35,6 +36,16 @@ const ClickedPage = () => {
                     console.log(res.data);
                     setPost(res.data);
                 })
+
+            axios.get('http://localhost:2424/getCommentsByPosts?postID=' + post.id)
+                .then((res) => {
+                    setForm({
+                        comment: res.data,
+                        postId: post.id
+                    })
+
+                    console.log(res.data);
+                })
         } catch (error) {
             console.error('Error fetching posts', error);
         }
@@ -44,7 +55,7 @@ const ClickedPage = () => {
     const addComments = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        axios.post('http://localhost:2424/postComments?comment=' + form.comment + "&postID=" + post.id)
+        axios.post('http://localhost:2424/postComments?comment=' + comment + "&postID=" + post.id)
             .then((res) => {
                 console.log(res.data);
             })
@@ -54,10 +65,7 @@ const ClickedPage = () => {
         e.preventDefault();
 
         console.log(e.target.value);
-        setForm({
-            ...form,
-            comment: e.target.value
-        })
+        setComment(e.target.value);
     }
 
     const deletePost = () => {
@@ -90,7 +98,7 @@ const ClickedPage = () => {
                 </div>
                 <h1>Add comments</h1>
                 <div>
-                    previous comments
+                    {}
                 </div>
                 <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
