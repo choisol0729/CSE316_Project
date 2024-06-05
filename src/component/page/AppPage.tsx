@@ -31,7 +31,7 @@ const AppPage  = () => {
             <Header />
             <div style={{ padding: '20px' }}>
                 <h1 style={{ color: 'white' }}>App Page</h1>
-                <button onClick={moveToEditPage}>Add New Post</button>
+                <button style={{ color: 'white'}} onClick={moveToEditPage}>Add New Post</button>
                 <div style={{ marginTop: '20px' }}>
                     {posts.length > 0 ? (
                         posts.map(post => (
