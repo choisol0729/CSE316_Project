@@ -132,7 +132,7 @@ const Edit = () => {
     return (
         <>
             <Header />
-            <h1 style={{ color: 'white' }}>Create or Edit a Post</h1>
+            <h1 style={{ color: 'white'}}>Make a New Post</h1>
             <form onSubmit={handleSubmit} className="form-container">
                 <div className="form-group">
                     <label htmlFor="title" className="form-label">Title:</label>
