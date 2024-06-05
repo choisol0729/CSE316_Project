@@ -42,7 +42,14 @@ const Ai = () => {
     // }, []);
 
     const moveToEditPage = () => {
-        navigate('/edit');
+        const storedUserId = sessionStorage.getItem('userId'); 
+        console.log(storedUserId);
+        if(storedUserId!= null){
+            navigate('/edit');
+        }else{
+            alert('Login First')
+        }
+        
     }
 
     const toClickedPage = async (id: number) => {

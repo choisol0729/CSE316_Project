@@ -126,41 +126,38 @@ const Edit = () => {
         e.preventDefault();
         const storedUserId = sessionStorage.getItem('userId'); 
         console.log(storedUserId);
-        if(storedUserId!= null){
+        
+        
+        setForm({
+            ...form,
+            // url: url,
+            userId: storedUserId
+        });
+        // const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
+        const postResponse = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
+        console.log(postResponse.data);
 
-            setForm({
-                ...form,
-                // url: url,
-                userId: storedUserId
-            });
-            // const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
-            const postResponse = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
-            console.log(postResponse.data);
-    
-            const getResponse = await axios.post('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
-            
-            
-            // try {
-            //     // 백엔드로 POST 요청 보내기
-            //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
-    
-            //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
-            //         console.log('Post created successfully', response);
-    
-    
-            // 카테고리에 따라 페이지 이동
-            if (form.category === 'AI') {
-                navigate('/ai', { state: { title: form.title, category: form.category } });
-            } else if (form.category === 'Unity') {
-                navigate('/unity');
-            } else if (form.category === 'App') {
-                navigate('/app');
-            } else if (form.category === 'Hackathon') {
-                navigate('/hackathon');
-            }
+        const getResponse = await axios.post('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
+        
+        
+        // try {
+        //     // 백엔드로 POST 요청 보내기
+        //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
+
+        //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
+        //         console.log('Post created successfully', response);
+
+
+        // 카테고리에 따라 페이지 이동
+        if (form.category === 'AI') {
+            navigate('/ai', { state: { title: form.title, category: form.category } });
+        } else if (form.category === 'Unity') {
+            navigate('/unity');
+        } else if (form.category === 'App') {
+            navigate('/app');
+        } else if (form.category === 'Hackathon') {
+            navigate('/hackathon');
         }
-        
-        
         //     } else {
         //         console.error('Unexpected status code:', response.status);
         //     }
