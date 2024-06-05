@@ -84,15 +84,7 @@ const Edit = () => {
     // Handle image file change
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
-        if (file) {
-            setFileName(file.name);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-            // uploadImageToCloudinary(file); // Upload to Cloudinary
-        }
+        
 
         var img = event.target.files;
         if(img?.length !== 0 && img !== null) {
@@ -107,15 +99,28 @@ const Edit = () => {
                 var url = res.data.url;
                 const storedUserId = sessionStorage.getItem('userId'); 
                 console.log(url);
+                
                 // do something with url
                 setForm({
                     ...form,
                     url: url,
                     userId: storedUserId
                 });
+
+
+                if (file) {
+                    setFileName(file.name);
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setProfileImage(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                    // uploadImageToCloudinary(file); // Upload to Cloudinary
+                }
             })
             .catch(err => console.log(err));
         }
+        
     };
 
     // Trigger file input click
