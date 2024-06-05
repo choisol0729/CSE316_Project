@@ -167,6 +167,11 @@ const Edit = () => {
         // }
     };
 
+    const handleHackathon = () => {
+        if(sessionStorage.getItem("userId") === "admin") return false;
+        return true;
+    }
+
     return (
         <>
             <Header />
@@ -212,7 +217,7 @@ const Edit = () => {
                         <option value="AI">AI</option>
                         <option value="App">App</option>
                         <option value="Unity">Unity</option>
-                        <option value="Hackathon">Hackathon</option>
+                        <option value="Hackathon" disabled={handleHackathon()}>Hackathon</option>
                     </select>
                 </div>
 
