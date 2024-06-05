@@ -78,6 +78,8 @@ const ClickedPage = () => {
         axios.post('http://localhost:2424/deletePost?postID=' + post.id + '&userID=' + userIdInSS)
             .then((res) => {
                 console.log(res.data);
+                alert('Successfully Deleted')
+                navigate('/')
             })
     };
 
