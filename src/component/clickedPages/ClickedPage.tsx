@@ -65,7 +65,7 @@ const ClickedPage = () => {
 
         if(sessionStorage.getItem('userId')!= null){
             console.log('you can delete post')
-            
+
         }
         
     };
@@ -81,11 +81,11 @@ const ClickedPage = () => {
             </div>
             <form id="my-form" onSubmit={addComments}>
                 <div>
-                    <form action="" onSubmit={deletePost}>
-                        <button type='submit' className='submit-button'>
-                            Delete Post
-                        </button>
-                    </form>
+                    
+                    <button type='submit' className='submit-button'>
+                        Delete Post
+                    </button>
+                    
                     
                 </div>
                 <h1>Add comments</h1>
