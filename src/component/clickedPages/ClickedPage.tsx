@@ -14,7 +14,7 @@ interface BlogPost {
 }
 
 const ClickedPage = () => {
-  const [post, setPost] = useState<BlogPost>({id: 0, title: "", content: "", category: "", url: ""});
+  const [post, setPost] = useState<BlogPost>({id: 0, title: "Normal", content: "", category: "", url: "random"});
   const location = useLocation();
   const userInfo = { ...location.state };
   const navigate = useNavigate();
@@ -39,7 +39,8 @@ const ClickedPage = () => {
             <Header/>
             <h1 style={{color:'white'}}>{post.title}</h1>
             <div>
-
+                <img src={post.url} />
+                {post.content}
             </div>
             
 		</>
