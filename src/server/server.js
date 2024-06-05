@@ -75,11 +75,12 @@ app.post("/postContents", (req, res) => {
 
 app.post("/postComments", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    var dateObj = new Date();
 
     const id = parseInt((Math.random() * MAX_VALUE).toPrecision(16));
     var comment = req.query["comment"];
     var postID = req.query["postID"];
-    var date = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+    var date = dateObj.getFullYear() + "/" + (dateObj.getMonth() + 1) + "/" + dateObj.getDate();
 
     const sqlQuery = "INSERT INTO Comments(id, comment, postID, creationDate) VALUES (?, ?, ?, ?);";
 
