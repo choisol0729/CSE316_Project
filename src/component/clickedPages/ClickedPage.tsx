@@ -51,7 +51,7 @@ const ClickedPage = () => {
         // alert("successfully delted account")
         // if(response.data.id)
         console.log(response.data)
-        navigate('/');
+        // navigate('/');
         
     };
 
@@ -67,6 +67,10 @@ const ClickedPage = () => {
             </div>
             <form id="my-form" onSubmit={addComments}>
                 <h1>Add comments</h1>
+                <div>
+                    previous comments
+                </div>
+                <textarea name="" id="" cols={30} rows={5}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
             </form>
 		</>
