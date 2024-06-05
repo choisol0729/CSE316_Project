@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
+import './page.css'
 
 interface BlogPost {
     id: number;
@@ -12,6 +13,9 @@ interface BlogPost {
 const Ai = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { title, category } = location.state || { title: '', category: '' };
 
     useEffect(() => {
         const allPostsString = sessionStorage.getItem('allPosts');
@@ -29,7 +33,11 @@ const Ai = () => {
     return (
         <>
             <Header />
-            <div style={{ padding: '20px' }}>
+            {/* <div className='form-group'>
+                wow
+            </div> */}
+
+            <div className="center" style={{ padding: '20px' }}>
                 <h1 style={{ color: 'white' }}>AI Page</h1>
                 <button style={{ color: 'white'}} onClick={moveToEditPage}>Add New Post</button>
                 <div style={{ marginTop: '20px' }}>
@@ -42,8 +50,8 @@ const Ai = () => {
                                 padding: '10px', 
                                 borderRadius: '5px'
                             }}>
-                                <h2>{post.title}</h2>
-                                <p>{post.content}</p>
+                                <h2>{title}</h2>
+                                <p>{category}</p>
                             </div>
                         ))
                     ) : (

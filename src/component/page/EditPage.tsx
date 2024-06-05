@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Edit.css';
@@ -15,6 +15,7 @@ interface BlogPost {
 const Edit = () => {
     const uploadPreset = "laiyi8dx";
     const cloudName = "dd0npgwst";
+    const [fetchedPosts, setFetchedPosts] = useState<{ title: string; category: string }[]>([]);
 
     const [form, setForm] = useState<BlogPost>({
         title: '',
@@ -27,6 +28,20 @@ const Edit = () => {
     
     const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('http://localhost:2424/postContents');
+                setFetchedPosts(response.data);
+            } catch (error) {
+                console.error('Error fetching posts', error);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const storedUserId = sessionStorage.getItem('userId'); 
@@ -118,8 +133,12 @@ const Edit = () => {
             userId: storedUserId
         });
         // const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
-        const response = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
-        console.log(response.data);
+        const postResponse = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
+        console.log(postResponse.data);
+
+        const getResponse = await axios.get('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
+        
+        
         // try {
         //     // 백엔드로 POST 요청 보내기
         //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
@@ -127,9 +146,10 @@ const Edit = () => {
         //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
         //         console.log('Post created successfully', response);
 
+
         // 카테고리에 따라 페이지 이동
         if (form.category === 'AI') {
-            navigate('/ai');
+            navigate('/ai', { state: { title: form.title, category: form.category } });
         } else if (form.category === 'Unity') {
             navigate('/unity');
         } else if (form.category === 'App') {

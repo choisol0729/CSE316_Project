@@ -1,7 +1,7 @@
 /* Header.css */
 
 #header {
-    position: sticky; /* Alternatively, you can use `fixed` */
+    position: sticky;
     top: 0;
     width: 100%;
     background-color: #fff; /* Set background color to make the header visible */
@@ -61,6 +61,7 @@
 }
 
 .signup-container{
-    display: flex;
-    margin-left: 400px;
+    /* display: flex;
+    margin-left: 400px; */
+    float: right;
 }

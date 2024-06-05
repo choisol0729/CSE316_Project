@@ -6,7 +6,7 @@ export default function Main(){
 		<>
 
       <Header/>
-      <h1>Main Page</h1>
+      <h1 style={{color:'white'}}>Main Page</h1>
       <section className="container">
           <img src="../../imgs/HACKATHON.png" alt="" />
       </section>
