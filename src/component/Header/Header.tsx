@@ -5,10 +5,14 @@ import './Header.css';
 export default function Header() {
     return (
         <>
-        <SignUp />
+        <div className="signup-container">
+            <SignUp />
+        </div>
+        
+        
         <header id="header">
             <div className="wrapper">
-                {/* 메인 페이지로 이동하는 로고 */}
+                
                 <div className="logo">
                     <Link to="/">
                         <i className="fas fa-kiss-wink-heart"></i>Decompiler

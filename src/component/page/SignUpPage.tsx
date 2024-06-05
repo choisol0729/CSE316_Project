@@ -68,7 +68,7 @@ export default function SignUpPage() {
             <Header />
             <section className="container">
             <form id="my-form" onSubmit={handleSubmit}>
-                <h1>Make ID and PW</h1>
+                <h1>Make ID/PW</h1>
                 <div className="form-input">
                     <label htmlFor="id">Create ID:</label>
                     <input id="name" type="text" required value={id} onChange={idUpdate} />

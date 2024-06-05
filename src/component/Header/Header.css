@@ -59,3 +59,8 @@
 .li a:hover {
     color: #007bff;
 }
+
+.signup-container{
+    display: flex;
+    margin-left: 400px;
+}
