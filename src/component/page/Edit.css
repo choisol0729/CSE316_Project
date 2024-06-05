@@ -56,9 +56,16 @@
     gap: 20px;
 }
 
-.btn {
-    margin-right: 10px;
-}
+.bbtn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: 0;
+    background: lightgray;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
 
 .choose-button {
     padding: 10px 20px;
