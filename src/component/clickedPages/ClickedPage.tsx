@@ -13,7 +13,7 @@ interface BlogPost {
 }
 
 interface commentPost{
-    comment: string[];
+    comment: any[];
     postId: number;
 }
 
@@ -31,21 +31,25 @@ const ClickedPage = () => {
 
     useEffect(() => {
         try {
+            var thisid = 0;
             axios.get<BlogPost>('http://localhost:2424/getContent?id=' + userInfo.id)
                 .then((res) => {
-                    console.log(res.data);
+                    console.log("Form", res.data);
                     setPost(res.data);
+                    thisid = res.data.id;
+
+                    axios.get('http://localhost:2424/getCommentByPosts?postID=' + thisid)
+                        .then((res) => {
+                            setForm({
+                                comment: res.data,
+                                postId: thisid
+                            })
+
+                            console.log(res.data);
+                        })
                 })
 
-            axios.get('http://localhost:2424/getCommentsByPosts?postID=' + post.id)
-                .then((res) => {
-                    setForm({
-                        comment: res.data,
-                        postId: post.id
-                    })
-
-                    console.log(res.data);
-                })
+            
         } catch (error) {
             console.error('Error fetching posts', error);
         }
@@ -98,7 +102,9 @@ const ClickedPage = () => {
                 </div>
                 <h1>Add comments</h1>
                 <div>
-                    {}
+                    {form.comment.map((com) => (
+                        <div key={com.id}>{com.comment}</div>
+                    ))}
                 </div>
                 <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
