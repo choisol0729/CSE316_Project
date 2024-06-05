@@ -197,7 +197,7 @@ const Edit = () => {
 
                 <div className="form-group image-upload-container">
                     <div>
-                        <input type="file" onChange={handleImageChange} ref={fileInputRef} style={{ display: 'none' }} />
+                        <input type="file" onChange={handleImageChange} ref={fileInputRef} accept='image/*' style={{ display: 'none' }} />
                         <button type="button" onClick={triggerFileInput} className="btn btn-light">Choose new image</button>
                     </div>
                 </div>
