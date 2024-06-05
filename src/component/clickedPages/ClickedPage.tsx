@@ -57,11 +57,12 @@ const ClickedPage = () => {
 
 
     const addComments = async (e: React.FormEvent<HTMLFormElement>) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         axios.post('http://localhost:2424/postComments?comment=' + comment + "&postID=" + post.id)
             .then((res) => {
                 console.log(res.data);
+                navigate('/clickedPage')
             })
     };
 
