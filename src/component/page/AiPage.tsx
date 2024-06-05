@@ -70,9 +70,10 @@ const Ai = () => {
                             }}>
                                 <section>
                                     <h2>{post.title}</h2>
-                                    <p>{post.category}</p>
+                                    {/* <p>{post.category}</p> */}
                                     <p>{post.content}</p>
                                 </section>
+                                <br />
                                 <section>
                                     <img src={post.url} className='sinom' alt=""/>
                                 </section>
