@@ -62,7 +62,7 @@ const ClickedPage = () => {
 
     const deletePost = () => {
         // e.preventDefault();
-        var userIdInSS = sessionStorage.get('userId')
+        var userIdInSS = sessionStorage.getItem('userId')
         const response = axios.post('http://localhost:2424/deletPost?postID=' + post.id + '&userID=' + userIdInSS)
 
         if(sessionStorage.getItem('userId')!= null){
