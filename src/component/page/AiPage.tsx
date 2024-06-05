@@ -55,7 +55,7 @@ const Ai = () => {
             <div className="center" style={{ padding: '20px' }}>
                 <h1 style={{ color: 'white' }}>AI Page</h1>
                 <button style={{ color: 'white'}} onClick={moveToEditPage}>Add New Post</button>
-                <div className="form-container" style={{ marginTop: '20px' }}>
+                <div style={{ marginTop: '20px' }}>
                     {posts.length > 0 ? (
                         posts.map(post => (
                             <div key={post.id} style={{
@@ -68,15 +68,21 @@ const Ai = () => {
                                 // display: 'flex',
                                 justifyContent: 'space-between',
                             }}>
-                                <section>
-                                    <h2>{post.title}</h2>
-                                    {/* <p>{post.category}</p> */}
-                                    <p>{post.content}</p>
-                                </section>
-                                <br />
-                                <section>
-                                    <img src={post.url} className='sinom' alt=""/>
-                                </section>
+                                {/* check possible to click page or not */}
+                                <a href="../clickedPages/clickedPage">
+                                    <div>
+                                        <section>
+                                            <h2>{post.title}</h2>
+                                            {/* <p>{post.category}</p> */}
+                                            <p>{post.content}</p>
+                                        </section>
+                                        <br />
+                                        <section>
+                                            <img src={post.url} className='sinom' alt=""/>
+                                        </section>
+                                    </div>
+                                </a>
+                                
                             </div>
                         ))
                     ) : (
