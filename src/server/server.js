@@ -82,7 +82,7 @@ app.post("/deletePost", (req, res) => {
     const sqlQuery = "DELETE FROM Contents WHERE id = '" + postID + "' AND userID = '" + userID + "';";
 
     db.query(sqlQuery, (err, result) => {
-        if(err) console.log(err);
+        if(err) res.send({success: false});
         res.send({id: postID, success: true});
     })
 })
