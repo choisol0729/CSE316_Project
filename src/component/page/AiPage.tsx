@@ -64,8 +64,8 @@ const Ai = () => {
                                 marginBottom: '10px', 
                                 padding: '10px', 
                                 borderRadius: '5px',
-                                
-                                display: 'flex',
+
+                                // display: 'flex',
                                 justifyContent: 'space-between',
                             }}>
                                 <section>
