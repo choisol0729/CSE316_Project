@@ -100,7 +100,14 @@ const Edit = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        const storedUserId = sessionStorage.getItem('userId'); 
+        console.log(storedUserId);
+        
+        setForm({
+            ...form,
+            // url: url,
+            userId: storedUserId
+        });
         // const response = await axios.post('http://localhost:2424/signUp?username=' + id + "&pwd=" + pwd);
         const response = await axios.post('http://localhost:2424/postContents?url=' + form.url + '&title=' + form.title + '&userID=' +form.userId + '&content=' + form.content + '&category=' + form.category);
         console.log(response.data);
