@@ -38,9 +38,9 @@ export default function SignUp() {
 
     return (
         <>  
-            {isLoggedIn && (
+            {/* {isLoggedIn && (
                 <h4>welcome</h4>
-            )}
+            )} */}
 
             {isLoggedIn && (
 
