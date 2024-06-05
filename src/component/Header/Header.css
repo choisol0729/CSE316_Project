@@ -1,12 +1,22 @@
 /* Header.css */
+
 #header {
-    position: fixed; /* Alternatively, you can use `sticky` */
+    position: sticky; /* Alternatively, you can use `fixed` */
     top: 0;
-    width: 100vw;
+    width: 100%;
     background-color: #fff; /* Set background color to make the header visible */
     z-index: 1000; /* Ensure the header remains above other content */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+    font-weight: bold;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin: 0; /* Ensure no margins */
+    display: flex; /* Ensure content within the header is properly aligned */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
 }
+
 
 .wrapper {
     width: 100vw;

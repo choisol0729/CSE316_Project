@@ -4,6 +4,8 @@ import './Header.css';
 
 export default function Header() {
     return (
+        <>
+        <SignUp />
         <header id="header">
             <div className="wrapper">
                 {/* 메인 페이지로 이동하는 로고 */}
@@ -18,8 +20,9 @@ export default function Header() {
                     <li className="li"><Link to="/unity">Unity</Link></li>
                     <li className="li"><Link to="/hackathon">Hackathon</Link></li>
                 </ul>
-                <SignUp />
+                
             </div>
         </header>
+        </>
     );
 }
