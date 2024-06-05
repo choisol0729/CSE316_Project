@@ -25,7 +25,7 @@ const Edit = () => {
         url: ''
     });
     const navigate = useNavigate();
-    
+    const [fileName, setFileName] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -85,6 +85,7 @@ const Edit = () => {
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
+            setFileName(file.name);
             const reader = new FileReader();
             reader.onloadend = () => {
                 setProfileImage(reader.result);
@@ -225,6 +226,8 @@ const Edit = () => {
                     <div>
                         <input type="file" onChange={handleImageChange} ref={fileInputRef} accept='image/*' style={{ display: 'none' }} />
                         <button type="button" onClick={triggerFileInput} className="btn btn-light">Choose new image</button>
+                        {fileName && <span style={{ marginLeft: '10px', color: 'white' }}>{fileName}</span>}
+
                     </div>
                 </div>
 
