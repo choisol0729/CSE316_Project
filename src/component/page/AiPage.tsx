@@ -46,8 +46,18 @@ const Ai = () => {
     }
 
     const toClickedPage = () => {
-        navigate('/clickedPage')
+        const fetchPosts = async () => {
+            const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
+            setFetchedPosts(response.data);
+            const aiPosts = response.data.filter(post => post.category === 'AI');
+            setPosts(aiPosts)
+            navigate('/clickedPage', { state: {
+                
+            }})
+        }
     }
+
+    
 
     return (
         <>
