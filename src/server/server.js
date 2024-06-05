@@ -118,7 +118,7 @@ app.get("/getContent", (req, res) => {
     db.query(sqlQuery, (err, result) => {
         if(err) console.log(err);
         console.log(result);
-        res.send(result);
+        res.send(result[0]);
     })
 })
 

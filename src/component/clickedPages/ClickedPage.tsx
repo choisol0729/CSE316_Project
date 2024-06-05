@@ -1,9 +1,8 @@
-import { useState, useEffect, MouseEventHandler } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 // import '../App.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import Ai from '../page/AiPage';
 
 interface BlogPost {
     id: number;
@@ -14,35 +13,33 @@ interface BlogPost {
 }
 
 const ClickedPage = () => {
-  const [post, setPost] = useState<BlogPost>({id: 0, title: "Normal", content: "", category: "", url: "random"});
-  const location = useLocation();
-  const userInfo = { ...location.state };
-  const navigate = useNavigate();
+    const [post, setPost] = useState<BlogPost>({id: 0, title: "", content: "", category: "", url: ""});
+    const location = useLocation();
+    const userInfo = { ...location.state };
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
+    useEffect(() => {
         try {
-            const response = await axios.get<BlogPost>('http://localhost:2424/getContent?id=' + userInfo.id);
-            console.log(response.data);
-            setPost(response.data);
+            axios.get<BlogPost>('http://localhost:2424/getContent?id=' + userInfo.id)
+                .then((res) => {
+                    console.log(res.data);
+                    setPost(res.data);
+                })
         } catch (error) {
             console.error('Error fetching posts', error);
         }
-    };
-
-    fetchPosts();
-}, []);
-
+    }, []);
 
     return (
 		<>
             <Header/>
-            <h1 style={{color:'white'}}>{post.title}</h1>
-            <div>
-                <img src={post.url} />
-                {post.content}
+            <div style={{alignContent: 'center'}}>
+                <h1 style={{color:'white'}}>{post.title}</h1>
+                <div>
+                    {post.url !== "" ? (<img src={post.url} style={{maxWidth: "50vw"}}/>) : null}
+                    <div style={{color: 'white', fontSize: "30px"}}>{post.content}</div>
+                </div>
             </div>
-            
 		</>
     );
 }
