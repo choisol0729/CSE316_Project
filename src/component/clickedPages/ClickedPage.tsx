@@ -12,11 +12,21 @@ interface BlogPost {
     url: string;
 }
 
+interface commentPost{
+    comment: string;
+    postId: string;
+}
+
 const ClickedPage = () => {
     const [post, setPost] = useState<BlogPost>({id: 0, title: "", content: "", category: "", url: ""});
     const location = useLocation();
     const userInfo = { ...location.state };
     const navigate = useNavigate();
+    const [form, setForm] = useState<commentPost>({
+        comment: '',
+        postId: '',
+
+    });
 
     useEffect(() => {
         try {
@@ -30,6 +40,21 @@ const ClickedPage = () => {
         }
     }, []);
 
+
+    const addComments = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // console.log("submitted", acc);
+
+        
+        const response = await axios.post('http://localhost:2424/postComments?comment=' + form.comment + "&postID=" + form.postId);
+        // sessionStorage.clear()
+        // alert("successfully delted account")
+        // if(response.data.id)
+        console.log(response.data)
+        navigate('/');
+        
+    };
+
     return (
 		<>
             <Header/>
@@ -40,6 +65,10 @@ const ClickedPage = () => {
                     <div style={{color: 'white', fontSize: "30px"}}>{post.content}</div>
                 </div>
             </div>
+            <form id="my-form" onSubmit={addComments}>
+                <h1>Add comments</h1>
+                <input className="btn" type="submit" value="Add comments" />
+            </form>
 		</>
     );
 }
