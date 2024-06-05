@@ -60,12 +60,12 @@ const ClickedPage = () => {
         })
     }
 
-    const deletePost = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const deletePost = () => {
+        // e.preventDefault();
 
         if(sessionStorage.getItem('userId')!= null){
             console.log('you can delete post')
-
+            
         }
         
     };
@@ -82,7 +82,7 @@ const ClickedPage = () => {
             <form id="my-form" onSubmit={addComments}>
                 <div>
                     
-                    <button type='submit' className='submit-button'>
+                    <button onClick={deletePost} type='button' className='submit-button'>
                         Delete Post
                     </button>
                     
