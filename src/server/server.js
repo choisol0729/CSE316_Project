@@ -73,6 +73,19 @@ app.post("/postContents", (req, res) => {
     })
 });
 
+app.post("/deletePost", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const postID = req.query["postID"];
+
+    const sqlQuery = "DELETE FROM Contents WHERE id = '" + postID + "';";
+
+    db.query(sqlQuery, (err, result) => {
+        if(err) console.log(err);
+        res.send({id: postID, success: true});
+    })
+})
+
 app.post("/postComments", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     var dateObj = new Date();
