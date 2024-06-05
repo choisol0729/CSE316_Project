@@ -61,9 +61,10 @@ const Ai = () => {
                             <div key={post.id} style={{
                                 backgroundColor: 'white', 
                                 color: 'black', 
-                                // marginBottom: '10px', 
-                                // padding: '10px', 
-                                // borderRadius: '5px',
+                                marginBottom: '10px', 
+                                padding: '10px', 
+                                borderRadius: '5px',
+                                
                                 display: 'flex',
                                 justifyContent: 'space-between',
                             }}>
