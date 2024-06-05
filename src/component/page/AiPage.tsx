@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './page.css'
+import axios from 'axios'
 
 interface BlogPost {
     id: number;
@@ -14,17 +15,34 @@ const Ai = () => {
     const [posts, setPosts] = useState<BlogPost[]>([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const [fetchedPosts, setFetchedPosts] = useState<{ title: string; category: string }[]>([]);
+
 
     const { title, category } = location.state || { title: '', category: '' };
 
     useEffect(() => {
-        const allPostsString = sessionStorage.getItem('allPosts');
-        if (allPostsString) {
-            const allPosts = JSON.parse(allPostsString) as BlogPost[];
-            const aiPosts = allPosts.filter(post => post.category === 'AI');
-            setPosts(aiPosts);
-        }
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
+                setFetchedPosts(response.data);
+                const aiPosts = response.data.filter(post => post.category === 'AI');
+                setPosts(aiPosts)
+            } catch (error) {
+                console.error('Error fetching posts', error);
+            }
+        };
+
+        fetchPosts();
     }, []);
+    
+    // useEffect(() => {
+    //     const allPostsString = sessionStorage.getItem('allPosts');
+    //     if (allPostsString) {
+    //         const allPosts = JSON.parse(allPostsString) as BlogPost[];
+    //         const aiPosts = allPosts.filter(post => post.category === 'AI');
+    //         setPosts(aiPosts);
+    //     }
+    // }, []);
 
     const moveToEditPage = () => {
         navigate('/edit');
