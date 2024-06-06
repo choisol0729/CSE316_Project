@@ -52,6 +52,12 @@ const Ai = () => {
         
     }
 
+    const handlePostAdded = (newPost: BlogPost) => {
+        if (newPost.category === 'AI') {
+            setPosts(prevPosts => [newPost, ...prevPosts]);
+        }
+    };
+
     const toClickedPage = async (id: number) => {
         const response = await axios.get<BlogPost[]>('http://localhost:2424/getAllContents');
         setFetchedPosts(response.data);

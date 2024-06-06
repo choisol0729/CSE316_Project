@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Edit.css';
 import axios from 'axios';
@@ -25,6 +25,8 @@ const Edit = () => {
         url: ''
     });
     const navigate = useNavigate();
+    const location = useLocation(); 
+    const { onPostAdded } = location.state || {};
     const [fileName, setFileName] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -153,6 +155,17 @@ const Edit = () => {
         //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
         //         console.log('Post created successfully', response);
 
+        const newPost = {
+            id: postResponse.data.id,
+            title: form.title,
+            content: form.content,
+            category: form.category,
+            url: form.url
+        };
+
+        if (onPostAdded) {
+            onPostAdded(newPost);
+        }
 
         // 카테고리에 따라 페이지 이동
         if (form.category === 'AI') {
