@@ -1,4 +1,4 @@
--- CREATE DATABASE Decompiler_DB;
+CREATE DATABASE Decompiler_DB;
 
 USE Decompiler_DB
 

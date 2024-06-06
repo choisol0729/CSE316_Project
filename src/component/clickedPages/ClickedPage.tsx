@@ -69,8 +69,10 @@ const ClickedPage = () => {
     const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
 
-        console.log(e.target.value);
-        setComment(e.target.value);
+        if(sessionStorage.getItem("userId") !== null){
+            console.log(e.target.value);
+            setComment(e.target.value);
+        }
     }
 
     const deletePost = () => {
@@ -101,11 +103,9 @@ const ClickedPage = () => {
             </div>
             <form id="my-form" onSubmit={addComments}>
                 <div>
-                    
                     <button onClick={deletePost} type='button' className='submit-button'>
                         Delete Post
                     </button>
-                    
                     
                 </div>
                 <h1>Add comments</h1>
@@ -114,8 +114,16 @@ const ClickedPage = () => {
                         <div className='comments' key={com.id}>{com.comment}</div>
                     ))}
                 </div>
-                <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)} required></textarea>
-                <input className="btn" type="submit" value="Add comments" />
+                <textarea 
+                    style={ {width: "100%"}} 
+                    name="" 
+                    id="" 
+                    cols={30} 
+                    rows={5} 
+                    onChange={(e) => handleComment(e)} 
+                    disabled={sessionStorage.getItem("userId") === null}
+                    required></textarea>
+                <input className="btn" type="submit" value="Add comments" disabled={sessionStorage.getItem("userId") === null}/>
             </form>
 		</>
     );
