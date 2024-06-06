@@ -45,7 +45,11 @@ const Ai = () => {
         const storedUserId = sessionStorage.getItem('userId'); 
         console.log(storedUserId);
         if(storedUserId!= null){
-            navigate('/edit');
+            navigate('/edit', {
+                state: {
+                    onPostAdded: handlePostAdded
+                }
+            });
         }else{
             alert('Login First')
         }

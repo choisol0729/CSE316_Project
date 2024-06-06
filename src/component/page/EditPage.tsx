@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Edit.css';
 import axios from 'axios';
@@ -25,11 +25,11 @@ const Edit = () => {
         url: ''
     });
     const navigate = useNavigate();
-    const location = useLocation(); 
-    const { onPostAdded } = location.state || {};
+    const location = useLocation();
     const [fileName, setFileName] = useState<string | null>(null);
     const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const { onPostAdded } = location.state || {};
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -147,14 +147,6 @@ const Edit = () => {
 
         const getResponse = await axios.post('http://localhost:2424/postContents?title=' + form.title + '&category=' + form.category)
         
-        
-        // try {
-        //     // 백엔드로 POST 요청 보내기
-        //     const response = await axios.post('http://localhost:2424/post?formdata=' + JSON.stringify(form));
-
-        //     if (response.status === 201) { // 응답 상태 코드가 201인 경우 성공적으로 처리된 것
-        //         console.log('Post created successfully', response);
-
         const newPost = {
             id: postResponse.data.id,
             title: form.title,
@@ -162,7 +154,6 @@ const Edit = () => {
             category: form.category,
             url: form.url
         };
-
         if (onPostAdded) {
             onPostAdded(newPost);
         }
