@@ -121,8 +121,8 @@ const ClickedPage = () => {
                         <div className='comments' key={com.id}>{com.comment}</div>
                     ))}
                 </div>
-                <textarea style={{ width: "100%" }} name="" id="" cols={30} rows={5} onChange={handleComment} value={comment}></textarea>
-                <input className="btn" type="submit" value="Add comments" />
+                <textarea style={{ width: "100%" }} name="" id="" cols={30} rows={5} onChange={handleComment} value={comment} disabled={sessionStorage.getItem("userId") === null} required></textarea>
+                <input className="btn" type="submit" value="Add comments" disabled={sessionStorage.getItem("userId") === null}/>
             </form>
 		</>
     );
