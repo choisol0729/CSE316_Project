@@ -62,8 +62,15 @@ const ClickedPage = () => {
         axios.post('http://localhost:2424/postComments?comment=' + comment + "&postID=" + post.id)
             .then((res) => {
                 console.log(res.data);
-                <meta http-equiv="refresh" content="5"></meta>
+    
+                const newComment = { comment, id: res.data.id };
+                setForm(prevForm => ({
+                    ...prevForm,
+                    comment: [...prevForm.comment, newComment]
+                }));
+                setComment(""); 
             })
+            .catch(error => console.error('Error posting comment', error));
     };
 
     const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -114,7 +121,7 @@ const ClickedPage = () => {
                         <div className='comments' key={com.id}>{com.comment}</div>
                     ))}
                 </div>
-                <textarea style={ {width: "100%"}} name="" id="" cols={30} rows={5} onChange={(e) => handleComment(e)}></textarea>
+                <textarea style={{ width: "100%" }} name="" id="" cols={30} rows={5} onChange={handleComment} value={comment}></textarea>
                 <input className="btn" type="submit" value="Add comments" />
             </form>
 		</>
